@@ -89,7 +89,7 @@ void lcd_display_str(const char *string)
     command = 0x1;
     writetoLCD(1, 0, &command);
     /* Write the string to display. */
-    writetoLCD(strlen(string), 1, (const uint8 *)string);
+    writetoLCD(40, 1, (const uint8 *)string);
 }
 
 #endif

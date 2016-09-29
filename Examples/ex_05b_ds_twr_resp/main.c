@@ -57,13 +57,14 @@ static uint8 rx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x
 #define FINAL_MSG_POLL_TX_TS_IDX 10
 #define FINAL_MSG_RESP_RX_TS_IDX 14
 #define FINAL_MSG_FINAL_TX_TS_IDX 18
+#define FINAL_MSG_TEST_DATA 22
 #define FINAL_MSG_TS_LEN 4
 /* Frame sequence number, incremented after each transmission. */
 static uint8 frame_seq_nb = 0;
 
 /* Buffer to store received messages.
  * Its size is adjusted to longest frame that this example code is supposed to handle. */
-#define RX_BUF_LEN 24
+#define RX_BUF_LEN 25
 static uint8 rx_buffer[RX_BUF_LEN];
 
 /* Hold copy of status register state here for reference so that it can be examined at a debug breakpoint. */
@@ -243,6 +244,8 @@ int main(void)
                         final_msg_get_ts(&rx_buffer[FINAL_MSG_RESP_RX_TS_IDX], &resp_rx_ts);
                         final_msg_get_ts(&rx_buffer[FINAL_MSG_FINAL_TX_TS_IDX], &final_tx_ts);
 
+                        uint8 testData = rx_buffer[FINAL_MSG_TEST_DATA];
+
                         /* Compute time of flight. 32-bit subtractions give correct answers even if clock has wrapped. See NOTE 12 below. */
                         poll_rx_ts_32 = (uint32)poll_rx_ts;
                         resp_tx_ts_32 = (uint32)resp_tx_ts;
@@ -259,6 +262,9 @@ int main(void)
                         /* Display computed distance on LCD. */
                         sprintf(dist_str, "DIST: %3.2f m", distance);
                         lcd_display_str(dist_str);
+                        char test_str[16] = {0};
+                        sprintf(test_str, "DATA: %i", testData);
+                        writetoLCD(strlen(test_str), 1, (const uint8 *)test_str);
                     }
                 }
                 else

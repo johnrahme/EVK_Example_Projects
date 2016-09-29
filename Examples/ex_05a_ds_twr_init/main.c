@@ -26,7 +26,7 @@
 #include "port.h"
 
 /* Example application name and version to display on LCD screen. */
-#define APP_NAME "DS TWR INIT v1.2"
+#define APP_NAME "DS TWR INIT v1.3"
 
 /* Inter-ranging delay period, in milliseconds. */
 #define RNG_DELAY_MS 1000
@@ -52,7 +52,7 @@ static dwt_config_t config = {
 /* Frames used in the ranging process. See NOTE 2 below. */
 static uint8 tx_poll_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x21, 0, 0};
 static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0x10, 0x02, 0, 0, 0, 0};
-static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 /* Length of the common part of the message (up to and including the function code, see NOTE 2 below). */
 #define ALL_MSG_COMMON_LEN 10
 /* Indexes to access some of the fields in the frames defined above. */
@@ -60,6 +60,7 @@ static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x
 #define FINAL_MSG_POLL_TX_TS_IDX 10
 #define FINAL_MSG_RESP_RX_TS_IDX 14
 #define FINAL_MSG_FINAL_TX_TS_IDX 18
+#define FINAL_MSG_TEST_DATA 22
 #define FINAL_MSG_TS_LEN 4
 /* Frame sequence number, incremented after each transmission. */
 static uint8 frame_seq_nb = 0;
@@ -116,6 +117,7 @@ int main(void)
     /* Display application name on LCD. */
     lcd_display_str(APP_NAME);
 
+
     /* Reset and initialise DW1000.
      * For initialisation, DW1000 clocks must be temporarily set to crystal speed. After initialisation SPI rate can be increased for optimum
      * performance. */
@@ -145,6 +147,13 @@ int main(void)
     /* Loop forever initiating ranging exchanges. */
     while (1)
     {
+    	if(is_switch_on(TA_SW1_4) == 1){
+
+    		tx_final_msg[FINAL_MSG_TEST_DATA] = (uint8) 1;
+    	}
+    	else{
+    		tx_final_msg[FINAL_MSG_TEST_DATA] = (uint8) 0;
+    	}
         /* Write frame data to DW1000 and prepare transmission. See NOTE 8 below. */
         tx_poll_msg[ALL_MSG_SN_IDX] = frame_seq_nb;
         dwt_writetxdata(sizeof(tx_poll_msg), tx_poll_msg, 0); /* Zero offset in TX buffer. */
