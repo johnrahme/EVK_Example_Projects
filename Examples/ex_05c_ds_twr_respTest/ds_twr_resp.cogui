@@ -21,11 +21,11 @@
 <input factoryID="org.coocox.builder.ui.persistent.PersistentElementFactory">&#x0A;<org.coocox.welcome.ui.WelcomePage/>
 </input>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05b_ds_twr_resp/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05b_ds_twr_resp/main.c" workbook="DefaultEditorWorkbook">
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05c_ds_twr_respTest/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05c_ds_twr_respTest/main.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_resp/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="12509" selectionTopPixel="5527"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1171" selectionTopPixel="934"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" partName="lcd.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/lcd.c" title="lcd.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/lcd.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" partName="lcd.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/lcd.c" title="lcd.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/lcd.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_resp/platform/lcd.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2003" selectionTopPixel="1549"/>
 </editor>
@@ -184,8 +184,8 @@
 <hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
 <hide_toolbar_item_id id="org.coocox.builder.ui.build"/>
 <hide_toolbar_item_id id="org.coocox.welcome.ui.action.welcome"/>
-<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <hide_toolbar_item_id id="org.coocox.component.ui.ShowRepositoryAction"/>
+<hide_toolbar_item_id id="org.coocox.codebugger.configuration.coideProgramDownloadAction"/>
 <view id="org.eclipse.ui.console.ConsoleView"/>
 <view id="org.eclipse.debug.ui.DebugView"/>
 <view id="org.coocox.codebugger.trace.ui.traceview"/>
@@ -262,13 +262,8 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_resp/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_resp/platform/lcd.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_resp/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_resp/main.c"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="18871" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position info="not_deleted" x="18789" y="0"/>
-</item>
 <item historyLabel="main.c" index="0">
 <position info="not_deleted" x="18831" y="0"/>
 </item>
@@ -398,8 +393,14 @@
 <item historyLabel="main.c" index="16">
 <position info="not_deleted" x="12509" y="0"/>
 </item>
-<item active="true" historyLabel="lcd.c" index="15">
+<item historyLabel="lcd.c" index="15">
 <position info="not_deleted" x="1704" y="15"/>
+</item>
+<item historyLabel="main.c" index="17">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="17">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -408,11 +409,33 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="string.h" tooltip="C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q2\arm-none-eabi\include\string.h">
-<persistable path="C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q2\arm-none-eabi\include\string.h" project="ds_twr_init"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_rcc.c" tooltip="ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c">
+<persistable path="/ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_rcc.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="port.h" tooltip="ds_twr_init/platform/port.h">
 <persistable path="/ds_twr_init/platform/port.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="core_cm3.h" tooltip="ds_twr_init/Libraries/CMSIS/CM3/CoreSupport/core_cm3.h">
+<persistable path="/ds_twr_init/Libraries/CMSIS/CM3/CoreSupport/core_cm3.h"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="port.c" tooltip="ds_twr_init/platform/port.c">
+<persistable path="/ds_twr_init/platform/port.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="I2C_EEPROM.c" tooltip="ds_twr_init/Examples/I2C_EEPROM.c">
+<persistable path="/ds_twr_init/Examples/I2C_EEPROM.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="I2C_EEPROM.c" tooltip="ds_twr_init/I2C_EEPROM.c">
+<persistable path="/ds_twr_init/I2C_EEPROM.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="I2C_EEPROM.c" tooltip="ds_twr_init/example/I2C_EEPROM.c">
+<persistable path="/ds_twr_init/example/I2C_EEPROM.c"/>
+</file>
+<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
+<persistable>&#x0A;<subPage/>
+</persistable>
+</file>
+<file factoryID="org.eclipse.cdt.ui.ExternalEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="string.h" tooltip="C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q2\arm-none-eabi\include\string.h">
+<persistable path="C:\Program Files (x86)\GNU Tools ARM Embedded\5.4 2016q2\arm-none-eabi\include\string.h" project="ds_twr_init"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_it.c" tooltip="ds_twr_init/platform/stm32f10x_it.c">
 <persistable path="/ds_twr_init/platform/stm32f10x_it.c"/>
@@ -423,33 +446,11 @@
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.h" tooltip="ds_twr_init/platform/lcd.h">
 <persistable path="/ds_twr_init/platform/lcd.h"/>
 </file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="port.c" tooltip="ds_twr_init/platform/port.c">
-<persistable path="/ds_twr_init/platform/port.c"/>
-</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_gpio.h" tooltip="ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h">
 <persistable path="/ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/inc/stm32f10x_gpio.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_gpio.c" tooltip="ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c">
 <persistable path="/ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_gpio.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="I2C_EEPROM.c" tooltip="ds_twr_init/example/I2C_EEPROM.c">
-<persistable path="/ds_twr_init/example/I2C_EEPROM.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_i2c.h" tooltip="ds_twr_init/stm_lib/inc/stm32f10x_i2c.h">
-<persistable path="/ds_twr_init/stm_lib/inc/stm32f10x_i2c.h"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_i2c.c" tooltip="ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c">
-<persistable path="/ds_twr_init/Libraries/STM32F10x_StdPeriph_Driver/src/stm32f10x_i2c.c"/>
-</file>
-<file factoryID="org.coocox.component.ui.editors.repository.RepositoryElementFactory" id="org.coocox.builder.ui.editors.repository.RepositoryBrowser" name="Repository" tooltip="Repository">
-<persistable>&#x0A;<subPage/>
-</persistable>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="lcd.c" tooltip="ds_twr_init/platform/lcd.c">
-<persistable path="/ds_twr_init/platform/lcd.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_gpio.h" tooltip="EVK_Simple_App/stm_lib/inc/stm32f10x_gpio.h">
-<persistable path="/EVK_Simple_App/stm_lib/inc/stm32f10x_gpio.h"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_i2c.c" tooltip="EVKTest/stm32f10x_i2c.c">
 <persistable path="/EVKTest/stm32f10x_i2c.c"/>

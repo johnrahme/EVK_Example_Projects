@@ -26,7 +26,7 @@
 #include "port.h"
 
 /* Example application name and version to display on LCD screen. */
-#define APP_NAME "DS TWR INIT v1.3"
+#define APP_NAME "DS TWR INIT v1.2"
 
 /* Inter-ranging delay period, in milliseconds. */
 #define RNG_DELAY_MS 1000
@@ -52,7 +52,10 @@ static dwt_config_t config = {
 /* Frames used in the ranging process. See NOTE 2 below. */
 static uint8 tx_poll_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x21, 0, 0};
 static uint8 rx_resp_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'W', 'A', 0x10, 0x02, 0, 0, 0, 0};
-static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+static uint8 tx_poll_msg_2[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'R', 'A', 'V', 'E', 0x21, 0, 0};
+static uint8 rx_resp_msg_2[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'V', 'E', 'R', 'A', 0x10, 0x02, 0, 0, 0, 0};
+static uint8 tx_final_msg_2[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'R', 'A', 'V', 'E', 0x23, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 /* Length of the common part of the message (up to and including the function code, see NOTE 2 below). */
 #define ALL_MSG_COMMON_LEN 10
 /* Indexes to access some of the fields in the frames defined above. */
@@ -60,7 +63,6 @@ static uint8 tx_final_msg[] = {0x41, 0x88, 0, 0xCA, 0xDE, 'W', 'A', 'V', 'E', 0x
 #define FINAL_MSG_POLL_TX_TS_IDX 10
 #define FINAL_MSG_RESP_RX_TS_IDX 14
 #define FINAL_MSG_FINAL_TX_TS_IDX 18
-#define FINAL_MSG_TEST_DATA 22
 #define FINAL_MSG_TS_LEN 4
 /* Frame sequence number, incremented after each transmission. */
 static uint8 frame_seq_nb = 0;
@@ -94,6 +96,9 @@ typedef unsigned long long uint64;
 static uint64 poll_tx_ts;
 static uint64 resp_rx_ts;
 static uint64 final_tx_ts;
+static uint64 poll_tx_ts_2;
+static uint64 resp_rx_ts_2;
+static uint64 final_tx_ts_2;
 
 /* Declaration of static functions. */
 static uint64 get_tx_timestamp_u64(void);
@@ -116,7 +121,6 @@ int main(void)
 
     /* Display application name on LCD. */
     lcd_display_str(APP_NAME);
-
 
     /* Reset and initialise DW1000.
      * For initialisation, DW1000 clocks must be temporarily set to crystal speed. After initialisation SPI rate can be increased for optimum
@@ -147,21 +151,18 @@ int main(void)
     /* Loop forever initiating ranging exchanges. */
     while (1)
     {
-    	if(is_switch_on(TA_SW1_4) == 1){
-
-    		tx_final_msg[FINAL_MSG_TEST_DATA] = (uint8) 1;
-    	}
-    	else{
-    		tx_final_msg[FINAL_MSG_TEST_DATA] = (uint8) 0;
-    	}
         /* Write frame data to DW1000 and prepare transmission. See NOTE 8 below. */
         tx_poll_msg[ALL_MSG_SN_IDX] = frame_seq_nb;
         dwt_writetxdata(sizeof(tx_poll_msg), tx_poll_msg, 0); /* Zero offset in TX buffer. */
         dwt_writetxfctrl(sizeof(tx_poll_msg), 0, 1); /* Zero offset in TX buffer, ranging. */
+		
 
         /* Start transmission, indicating that a response is expected so that reception is enabled automatically after the frame is sent and the delay
          * set by dwt_setrxaftertxdelay() has elapsed. */
         dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+
+				
+
 
         /* We assume that the transmission is achieved correctly, poll for reception of a frame or error/timeout. See NOTE 9 below. */
         while (!((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) & (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)))
@@ -238,8 +239,99 @@ int main(void)
             dwt_rxreset();
         }
 
+/* -----------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+/*  2nd ranging process"*/
+        /* Write frame data to DW1000 and prepare transmission. See NOTE 8 below. */
+        tx_poll_msg_2[ALL_MSG_SN_IDX] = frame_seq_nb;
+        dwt_writetxdata(sizeof(tx_poll_msg_2), tx_poll_msg_2, 0); /* Zero offset in TX buffer. */
+        dwt_writetxfctrl(sizeof(tx_poll_msg_2), 0, 1); /* Zero offset in TX buffer, ranging. */
+		
+
+        /* Start transmission, indicating that a response is expected so that reception is enabled automatically after the frame is sent and the delay
+         * set by dwt_setrxaftertxdelay() has elapsed. */
+        dwt_starttx(DWT_START_TX_IMMEDIATE | DWT_RESPONSE_EXPECTED);
+
+				
+
+
+        /* We assume that the transmission is achieved correctly, poll for reception of a frame or error/timeout. See NOTE 9 below. */
+        while (!((status_reg = dwt_read32bitreg(SYS_STATUS_ID)) & (SYS_STATUS_RXFCG | SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR)))
+        { };
+
+        /* Increment frame sequence number after transmission of the poll message (modulo 256). */
+        frame_seq_nb++;
+
+        if (status_reg & SYS_STATUS_RXFCG)
+        {
+            uint32 frame_len;
+
+            /* Clear good RX frame event and TX frame sent in the DW1000 status register. */
+            dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_RXFCG | SYS_STATUS_TXFRS);
+
+            /* A frame has been received, read it into the local buffer. */
+            frame_len = dwt_read32bitreg(RX_FINFO_ID) & RX_FINFO_RXFLEN_MASK;
+            if (frame_len <= RX_BUF_LEN)
+            {
+                dwt_readrxdata(rx_buffer, frame_len, 0);
+            }
+
+            /* Check that the frame is the expected response from the companion "DS TWR responder" example.
+             * As the sequence number field of the frame is not relevant, it is cleared to simplify the validation of the frame. */
+            rx_buffer[ALL_MSG_SN_IDX] = 0;
+            if (memcmp(rx_buffer, rx_resp_msg_2, ALL_MSG_COMMON_LEN) == 0)
+            {
+                uint32 final_tx_time_2;
+                int ret;
+
+                /* Retrieve poll transmission and response reception timestamp. */
+                poll_tx_ts_2 = get_tx_timestamp_u64();
+                resp_rx_ts_2 = get_rx_timestamp_u64();
+
+                /* Compute final message transmission time. See NOTE 10 below. */
+                final_tx_time_2 = (resp_rx_ts_2 + (RESP_RX_TO_FINAL_TX_DLY_UUS * UUS_TO_DWT_TIME)) >> 8;
+                dwt_setdelayedtrxtime(final_tx_time_2);
+
+                /* Final TX timestamp is the transmission time we programmed plus the TX antenna delay. */
+                final_tx_ts_2= (((uint64)(final_tx_time_2 & 0xFFFFFFFEUL)) << 8) + TX_ANT_DLY;
+
+                /* Write all timestamps in the final message. See NOTE 11 below. */
+                final_msg_set_ts(&tx_final_msg_2[FINAL_MSG_POLL_TX_TS_IDX], poll_tx_ts_2);
+                final_msg_set_ts(&tx_final_msg_2[FINAL_MSG_RESP_RX_TS_IDX], resp_rx_ts_2);
+                final_msg_set_ts(&tx_final_msg_2[FINAL_MSG_FINAL_TX_TS_IDX], final_tx_ts_2);
+
+                /* Write and send final message. See NOTE 8 below. */
+                tx_final_msg_2[ALL_MSG_SN_IDX] = frame_seq_nb;
+                dwt_writetxdata(sizeof(tx_final_msg_2), tx_final_msg_2, 0); /* Zero offset in TX buffer. */
+                dwt_writetxfctrl(sizeof(tx_final_msg_2), 0, 1); /* Zero offset in TX buffer, ranging. */
+                ret = dwt_starttx(DWT_START_TX_DELAYED);
+
+                /* If dwt_starttx() returns an error, abandon this ranging exchange and proceed to the next one. See NOTE 12 below. */
+                if (ret == DWT_SUCCESS)
+                {
+                    /* Poll DW1000 until TX frame sent event set. See NOTE 9 below. */
+                    while (!(dwt_read32bitreg(SYS_STATUS_ID) & SYS_STATUS_TXFRS))
+                    { };
+
+                    /* Clear TXFRS event. */
+                    dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_TXFRS);
+
+                    /* Increment frame sequence number after transmission of the final message (modulo 256). */
+                    frame_seq_nb++;
+                }
+            }
+        }
+        else
+        {
+            /* Clear RX error/timeout events in the DW1000 status register. */
+            dwt_write32bitreg(SYS_STATUS_ID, SYS_STATUS_ALL_RX_TO | SYS_STATUS_ALL_RX_ERR);
+
+            /* Reset RX to properly reinitialise LDE operation. */
+            dwt_rxreset();
+        }
+
         /* Execute a delay between ranging exchanges. */
         sleep_ms(RNG_DELAY_MS);
+    
     }
 }
 
