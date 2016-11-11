@@ -4,7 +4,7 @@ cmsis_boot
 stm_lib
 EVB1000
 /Debug
-
+Examples/2016V_of_deca_app/EVK1000
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -52,3 +52,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+
