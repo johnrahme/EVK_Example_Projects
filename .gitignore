@@ -3,6 +3,7 @@ cmsis
 cmsis_boot
 stm_lib
 EVB1000
+/Debug
 
 # Windows image file caches
 Thumbs.db
