@@ -18,12 +18,11 @@
  */
 void PrintChar(char c)
 {
-
-	SH_SendChar(c);
 	/* Send a char like: 
 	   while(Transfer not completed);
 	   Transmit a char;
 	*/	
+	SH_SendChar(c);
 }
 
 /** Maximum string size allowed (in bytes). */
@@ -31,7 +30,7 @@ void PrintChar(char c)
 
 
 /** Required for proper compilation. */
-//struct _reent r = {0, (FILE *) 0, (FILE *) 1, (FILE *) 0};
+struct _reent r = {0, (FILE *) 0, (FILE *) 1, (FILE *) 0};
 //struct _reent *_impure_ptr = &r;
 
 /**
