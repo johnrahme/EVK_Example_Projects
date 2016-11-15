@@ -57,3 +57,5 @@ Temporary Items
 *.cogui
 *.comarker
 *.cproject
+*.log
+*.cogui
