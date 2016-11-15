@@ -24,9 +24,12 @@ static char g_buf_len = 0;
  * @return Character to write.
  *****************************************************************************/
 void SH_SendChar(int ch) {
-	g_buf[g_buf_len++] = ch;
-	g_buf[g_buf_len] = '\0';
-	if (g_buf_len == 3 || ch == '\n' || ch == '\0') {
+	if(ch != '-'){
+		g_buf[g_buf_len++] = ch;
+		g_buf[g_buf_len] = '\0';
+	}
+
+	if (g_buf_len + 1 >= sizeof(g_buf) || ch == '-' || ch == '\0') {
 		g_buf_len = 0;
 		/* Send the char */
 		if (SH_DoCommand(0x04, (int) g_buf, NULL) != 0) {
