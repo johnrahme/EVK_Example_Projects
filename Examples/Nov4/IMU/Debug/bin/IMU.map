@@ -36,8 +36,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x50 ..\obj\stm32f1xx_hal_rcc_ex.o
  .debug_ranges  0x00000000       0x40 ..\obj\stm32f1xx_hal_rcc_ex.o
- .debug_line    0x00000000      0x87d ..\obj\stm32f1xx_hal_rcc_ex.o
- .debug_str     0x00000000      0x525 ..\obj\stm32f1xx_hal_rcc_ex.o
+ .debug_line    0x00000000      0x7f5 ..\obj\stm32f1xx_hal_rcc_ex.o
+ .debug_str     0x00000000      0x4e1 ..\obj\stm32f1xx_hal_rcc_ex.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_rcc_ex.o
  .debug_frame   0x00000000      0x11c ..\obj\stm32f1xx_hal_rcc_ex.o
  .ARM.attributes
@@ -92,8 +92,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0xa8 ..\obj\stm32f1xx_hal_pwr.o
  .debug_ranges  0x00000000       0x98 ..\obj\stm32f1xx_hal_pwr.o
- .debug_line    0x00000000      0x4b8 ..\obj\stm32f1xx_hal_pwr.o
- .debug_str     0x00000000      0x512 ..\obj\stm32f1xx_hal_pwr.o
+ .debug_line    0x00000000      0x430 ..\obj\stm32f1xx_hal_pwr.o
+ .debug_str     0x00000000      0x4ce ..\obj\stm32f1xx_hal_pwr.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_pwr.o
  .debug_frame   0x00000000      0x290 ..\obj\stm32f1xx_hal_pwr.o
  .ARM.attributes
@@ -145,8 +145,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x30 ..\obj\stm32f1xx_hal_gpio_ex.o
  .debug_ranges  0x00000000       0x20 ..\obj\stm32f1xx_hal_gpio_ex.o
- .debug_line    0x00000000      0x27c ..\obj\stm32f1xx_hal_gpio_ex.o
- .debug_str     0x00000000      0x2ae ..\obj\stm32f1xx_hal_gpio_ex.o
+ .debug_line    0x00000000      0x216 ..\obj\stm32f1xx_hal_gpio_ex.o
+ .debug_str     0x00000000      0x26a ..\obj\stm32f1xx_hal_gpio_ex.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_gpio_ex.o
  .debug_frame   0x00000000       0x78 ..\obj\stm32f1xx_hal_gpio_ex.o
  .ARM.attributes
@@ -264,8 +264,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x88 ..\obj\stm32f1xx_hal_flash.o
  .debug_ranges  0x00000000       0x78 ..\obj\stm32f1xx_hal_flash.o
- .debug_line    0x00000000      0x4d5 ..\obj\stm32f1xx_hal_flash.o
- .debug_str     0x00000000      0x54f ..\obj\stm32f1xx_hal_flash.o
+ .debug_line    0x00000000      0x44d ..\obj\stm32f1xx_hal_flash.o
+ .debug_str     0x00000000      0x50b ..\obj\stm32f1xx_hal_flash.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_flash.o
  .debug_frame   0x00000000      0x204 ..\obj\stm32f1xx_hal_flash.o
  .ARM.attributes
@@ -316,8 +316,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x68 ..\obj\stm32f1xx_hal_dma.o
  .debug_ranges  0x00000000       0x58 ..\obj\stm32f1xx_hal_dma.o
- .debug_line    0x00000000     0x11cc ..\obj\stm32f1xx_hal_dma.o
- .debug_str     0x00000000      0x53d ..\obj\stm32f1xx_hal_dma.o
+ .debug_line    0x00000000     0x1144 ..\obj\stm32f1xx_hal_dma.o
+ .debug_str     0x00000000      0x4f9 ..\obj\stm32f1xx_hal_dma.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_dma.o
  .debug_frame   0x00000000      0x194 ..\obj\stm32f1xx_hal_dma.o
  .ARM.attributes
@@ -443,8 +443,8 @@ Discarded input sections
  .debug_abbrev  0x00000000       0x4b ..\obj\stm32f1xx_hal_tim.o
  .debug_aranges
                 0x00000000       0x18 ..\obj\stm32f1xx_hal_tim.o
- .debug_line    0x00000000      0x14d ..\obj\stm32f1xx_hal_tim.o
- .debug_str     0x00000000      0x1fa ..\obj\stm32f1xx_hal_tim.o
+ .debug_line    0x00000000      0x12b ..\obj\stm32f1xx_hal_tim.o
+ .debug_str     0x00000000      0x1b6 ..\obj\stm32f1xx_hal_tim.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_tim.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\stm32f1xx_hal_tim.o
@@ -488,8 +488,8 @@ Discarded input sections
  .debug_aranges
                 0x00000000       0x98 ..\obj\stm32f1xx_hal_flash_ex.o
  .debug_ranges  0x00000000       0x88 ..\obj\stm32f1xx_hal_flash_ex.o
- .debug_line    0x00000000      0x576 ..\obj\stm32f1xx_hal_flash_ex.o
- .debug_str     0x00000000      0x68f ..\obj\stm32f1xx_hal_flash_ex.o
+ .debug_line    0x00000000      0x4ee ..\obj\stm32f1xx_hal_flash_ex.o
+ .debug_str     0x00000000      0x64b ..\obj\stm32f1xx_hal_flash_ex.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_flash_ex.o
  .debug_frame   0x00000000      0x260 ..\obj\stm32f1xx_hal_flash_ex.o
  .ARM.attributes
@@ -501,8 +501,8 @@ Discarded input sections
  .debug_abbrev  0x00000000       0x4b ..\obj\stm32f1xx_hal_tim_ex.o
  .debug_aranges
                 0x00000000       0x18 ..\obj\stm32f1xx_hal_tim_ex.o
- .debug_line    0x00000000      0x14d ..\obj\stm32f1xx_hal_tim_ex.o
- .debug_str     0x00000000      0x1fd ..\obj\stm32f1xx_hal_tim_ex.o
+ .debug_line    0x00000000      0x12b ..\obj\stm32f1xx_hal_tim_ex.o
+ .debug_str     0x00000000      0x1b9 ..\obj\stm32f1xx_hal_tim_ex.o
  .comment       0x00000000       0x6f ..\obj\stm32f1xx_hal_tim_ex.o
  .ARM.attributes
                 0x00000000       0x33 ..\obj\stm32f1xx_hal_tim_ex.o
@@ -917,7 +917,7 @@ LOAD c:/program files (x86)/gnu tools arm embedded/5.4 2016q2/bin/../lib/gcc/arm
 END GROUP
 OUTPUT(IMU.elf elf32-littlearm)
 
-.debug_info     0x00000000     0x742a
+.debug_info     0x00000000     0x73e6
  .debug_info    0x00000000      0x136 ..\obj\semihosting.o
  .debug_info    0x00000136      0x65d ..\obj\stm32f1xx_hal.o
  .debug_info    0x00000793      0x130 ..\obj\stm32f1xx_it.o
@@ -928,9 +928,9 @@ OUTPUT(IMU.elf elf32-littlearm)
  .debug_info    0x00003a69      0xe4a ..\obj\printf.o
  .debug_info    0x000048b3       0xee ..\obj\startup_stm32f10x_cl.o
  .debug_info    0x000049a1      0x60f ..\obj\stm32f1xx_hal_gpio.o
- .debug_info    0x00004fb0       0xc5 ..\obj\sh_cmd.o
- .debug_info    0x00005075     0x1acf ..\obj\stm32f1xx_hal_i2c.o
- .debug_info    0x00006b44      0x8e6 ..\obj\stm32f1xx_hal_msp.o
+ .debug_info    0x00004fb0       0x81 ..\obj\sh_cmd.o
+ .debug_info    0x00005031     0x1acf ..\obj\stm32f1xx_hal_i2c.o
+ .debug_info    0x00006b00      0x8e6 ..\obj\stm32f1xx_hal_msp.o
 
 .debug_abbrev   0x00000000     0x1363
  .debug_abbrev  0x00000000       0xad ..\obj\semihosting.o
@@ -989,46 +989,46 @@ OUTPUT(IMU.elf elf32-littlearm)
  .debug_ranges  0x000003a8      0x208 ..\obj\stm32f1xx_hal_i2c.o
  .debug_ranges  0x000005b0       0x20 ..\obj\stm32f1xx_hal_msp.o
 
-.debug_line     0x00000000     0x3f88
- .debug_line    0x00000000       0xc3 ..\obj\semihosting.o
- .debug_line    0x000000c3      0x441 ..\obj\stm32f1xx_hal.o
- .debug_line    0x00000504      0x239 ..\obj\stm32f1xx_it.o
- .debug_line    0x0000073d      0x4fb ..\obj\stm32f1xx_hal_cortex.o
- .debug_line    0x00000c38      0x2a8 ..\obj\system_stm32f1xx.o
- .debug_line    0x00000ee0      0xd64 ..\obj\stm32f1xx_hal_rcc.o
- .debug_line    0x00001c44      0x470 ..\obj\main.o
- .debug_line    0x000020b4      0x38c ..\obj\printf.o
- .debug_line    0x00002440       0xba ..\obj\startup_stm32f10x_cl.o
- .debug_line    0x000024fa      0x4d5 ..\obj\stm32f1xx_hal_gpio.o
- .debug_line    0x000029cf       0x94 ..\obj\sh_cmd.o
- .debug_line    0x00002a63     0x11fa ..\obj\stm32f1xx_hal_i2c.o
- .debug_line    0x00003c5d      0x32b ..\obj\stm32f1xx_hal_msp.o
+.debug_line     0x00000000     0x3ac0
+ .debug_line    0x00000000       0xa1 ..\obj\semihosting.o
+ .debug_line    0x000000a1      0x3b9 ..\obj\stm32f1xx_hal.o
+ .debug_line    0x0000045a      0x1f5 ..\obj\stm32f1xx_it.o
+ .debug_line    0x0000064f      0x495 ..\obj\stm32f1xx_hal_cortex.o
+ .debug_line    0x00000ae4      0x242 ..\obj\system_stm32f1xx.o
+ .debug_line    0x00000d26      0xcdc ..\obj\stm32f1xx_hal_rcc.o
+ .debug_line    0x00001a02      0x3e8 ..\obj\main.o
+ .debug_line    0x00001dea      0x36a ..\obj\printf.o
+ .debug_line    0x00002154       0x98 ..\obj\startup_stm32f10x_cl.o
+ .debug_line    0x000021ec      0x44d ..\obj\stm32f1xx_hal_gpio.o
+ .debug_line    0x00002639       0x72 ..\obj\sh_cmd.o
+ .debug_line    0x000026ab     0x1172 ..\obj\stm32f1xx_hal_i2c.o
+ .debug_line    0x0000381d      0x2a3 ..\obj\stm32f1xx_hal_msp.o
 
-.debug_str      0x00000000     0x24e9
- .debug_str     0x00000000      0x1bd ..\obj\semihosting.o
-                                0x1f6 (size before relaxing)
- .debug_str     0x000001bd      0x69f ..\obj\stm32f1xx_hal.o
-                                0x82d (size before relaxing)
- .debug_str     0x0000085c       0xd2 ..\obj\stm32f1xx_it.o
-                                0x256 (size before relaxing)
- .debug_str     0x0000092e      0x36e ..\obj\stm32f1xx_hal_cortex.o
-                                0x9d6 (size before relaxing)
- .debug_str     0x00000c9c      0x119 ..\obj\system_stm32f1xx.o
-                                0x36e (size before relaxing)
- .debug_str     0x00000db5      0x3cb ..\obj\stm32f1xx_hal_rcc.o
-                                0x690 (size before relaxing)
- .debug_str     0x00001180      0x4b9 ..\obj\main.o
-                                0xc49 (size before relaxing)
- .debug_str     0x00001639      0x4dd ..\obj\printf.o
-                                0x69f (size before relaxing)
- .debug_str     0x00001b16       0xc8 ..\obj\startup_stm32f10x_cl.o
-                                0x15f (size before relaxing)
- .debug_str     0x00001bde      0x1cf ..\obj\stm32f1xx_hal_gpio.o
-                                0x46b (size before relaxing)
- .debug_str     0x00001dad      0x6d3 ..\obj\stm32f1xx_hal_i2c.o
-                                0xc96 (size before relaxing)
- .debug_str     0x00002480       0x69 ..\obj\stm32f1xx_hal_msp.o
-                                0xa53 (size before relaxing)
+.debug_str      0x00000000     0x232f
+ .debug_str     0x00000000      0x179 ..\obj\semihosting.o
+                                0x1b2 (size before relaxing)
+ .debug_str     0x00000179      0x67d ..\obj\stm32f1xx_hal.o
+                                0x7e9 (size before relaxing)
+ .debug_str     0x000007f6       0xb0 ..\obj\stm32f1xx_it.o
+                                0x212 (size before relaxing)
+ .debug_str     0x000008a6      0x34c ..\obj\stm32f1xx_hal_cortex.o
+                                0x992 (size before relaxing)
+ .debug_str     0x00000bf2       0xf7 ..\obj\system_stm32f1xx.o
+                                0x32a (size before relaxing)
+ .debug_str     0x00000ce9      0x3a9 ..\obj\stm32f1xx_hal_rcc.o
+                                0x64c (size before relaxing)
+ .debug_str     0x00001092      0x497 ..\obj\main.o
+                                0xc05 (size before relaxing)
+ .debug_str     0x00001529      0x4bb ..\obj\printf.o
+                                0x65b (size before relaxing)
+ .debug_str     0x000019e4       0xa6 ..\obj\startup_stm32f10x_cl.o
+                                0x13d (size before relaxing)
+ .debug_str     0x00001a8a      0x1ad ..\obj\stm32f1xx_hal_gpio.o
+                                0x427 (size before relaxing)
+ .debug_str     0x00001c37      0x6b1 ..\obj\stm32f1xx_hal_i2c.o
+                                0xc52 (size before relaxing)
+ .debug_str     0x000022e8       0x47 ..\obj\stm32f1xx_hal_msp.o
+                                0xa0f (size before relaxing)
 
 .comment        0x00000000       0x6e
  .comment       0x00000000       0x6e ..\obj\semihosting.o

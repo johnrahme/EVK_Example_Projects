@@ -152,10 +152,19 @@ int main(void)
     uint8 dataseq[15];
     usb_init();
     sleep_ms(1000);
+    char dist_str[16] = "10.3";
+    int distance = 0;
     while(1){
-        	memcpy(dataseq, (const uint8 *) "Test Message3", 15);
-        	send_usbmessage(&dataseq, 15);
+    	if(distance == 200){
+    		distance = 0;
+    	}
+    	 distance++;
+    		sprintf(dist_str, "DIST: %i m", distance);
+        	memcpy(dataseq, (const uint8 *) dist_str, 16);
+        	send_usbmessage(&dataseq, 16);
+        	sleep_ms(100);
         	usb_run();
+        	sleep_ms(100);
     }
     while (1)
     {

@@ -23,7 +23,6 @@
 <part id="10"/>
 <part id="11"/>
 <part id="12"/>
-<part id="13"/>
 </presentation>
 </folder>
 </info>
@@ -31,10 +30,6 @@
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="deca_device_api.h" partName="deca_device_api.h" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/decadriver/deca_device_api.h" title="deca_device_api.h" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/decadriver/deca_device_api.h" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/decadriver/deca_device_api.h"/>
 <editorState selectionHorizontalPixel="0" selectionLength="16" selectionOffset="63603" selectionTopPixel="35443"/>
-</editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="I2C_EEPROM.c" partName="I2C_EEPROM.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05a_ds_twr_init/Example/I2C_EEPROM.c" title="I2C_EEPROM.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05a_ds_twr_init/Example/I2C_EEPROM.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/Examples/I2C_EEPROM.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="5439" selectionTopPixel="2695"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="port.c" partName="port.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/port.c" title="port.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/port.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/platform/port.c"/>
@@ -68,26 +63,26 @@
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/semihosting/semihosting.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="937" selectionTopPixel="552"/>
 </editor>
-<editor id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05a_ds_twr_init/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/ex_05a_ds_twr_init/main.c" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/main.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6912" selectionTopPixel="167"/>
-</editor>
 <editor id="org.eclipse.cdt.ui.editor.asm.AsmEditor" name="sh_cmd.s" partName="sh_cmd.s" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/semihosting/sh_cmd.s" title="sh_cmd.s" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/semihosting/sh_cmd.s" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/semihosting/sh_cmd.s"/>
 <editorState selectionHorizontalPixel="0" selectionLength="55" selectionOffset="1916" selectionTopPixel="1219"/>
 </editor>
-<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_it.c" partName="stm32f10x_it.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/stm32f10x_it.c" title="stm32f10x_it.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/stm32f10x_it.c" workbook="DefaultEditorWorkbook">
+<editor id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_it.c" partName="stm32f10x_it.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/stm32f10x_it.c" title="stm32f10x_it.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/platform/stm32f10x_it.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/platform/stm32f10x_it.c"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="742" selectionTopPixel="4170"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="2123" selectionTopPixel="0"/>
 </editor>
 <editor id="org.eclipse.cdt.ui.editor.CEditor" name="deca_usb.c" partName="deca_usb.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/usb/deca_usb.c" title="deca_usb.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/usb/deca_usb.c" workbook="DefaultEditorWorkbook">
 <input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/usb/deca_usb.c"/>
 <editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="10131" selectionTopPixel="8510"/>
 </editor>
+<editor activePart="true" focus="true" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" partName="main.c" path="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/main.c" title="main.c" tooltip="C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/main.c" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/ds_twr_init/main.c"/>
+<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="6990" selectionTopPixel="3237"/>
+</editor>
 </editors>
 <views>
 <view id="org.coocox.builder.ui.views.ProjectView" partName="Project">
-<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="5">
+<viewState CommonNavigator.LINKING_ENABLED="0" horizontalPosition="0" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0" verticalPosition="4">
 <expanded>
 <element path="/ds_twr_init"/>
 <element path="/ds_twr_init/platform"/>
@@ -305,34 +300,10 @@
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.asm.AsmEditor" path="/ds_twr_init/semihosting/sh_cmd.s"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_init/main.c"/>
 <editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_init/usb/deca_usb.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_init/main.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_init/Examples/I2C_EEPROM.c"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" path="/ds_twr_init/stdio/printf.c"/>
 </editors>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="790" y="0"/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="817" y="0"/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="844" y="0"/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="855" y="0"/>
-</item>
-<item historyLabel="main.c" index="0">
-<position/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="790" y="0"/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="817" y="0"/>
-</item>
-<item historyLabel="semihosting.c" index="1">
-<position info="not_deleted" x="844" y="0"/>
-</item>
 <item historyLabel="semihosting.c" index="1">
 <position info="not_deleted" x="1011" y="0"/>
 </item>
@@ -451,8 +422,35 @@
 <item historyLabel="main.c" index="11">
 <position info="not_deleted" x="6912" y="0"/>
 </item>
-<item active="true" historyLabel="stm32f10x_it.c" index="9">
+<item historyLabel="stm32f10x_it.c" index="9">
 <position info="not_deleted" x="1381" y="0"/>
+</item>
+<item historyLabel="main.c" index="13">
+<position info="not_deleted" x="6912" y="0"/>
+</item>
+<item historyLabel="I2C_EEPROM.c" index="14">
+<position info="not_deleted" x="5439" y="0"/>
+</item>
+<item historyLabel="main.c" index="13">
+<position info="not_deleted" x="6912" y="0"/>
+</item>
+<item historyLabel="printf.c" index="15">
+<position info="not_deleted" x="708" y="0"/>
+</item>
+<item historyLabel="main.c" index="13">
+<position info="not_deleted" x="0" y="25534"/>
+</item>
+<item historyLabel="printf.c" index="15">
+<position info="not_deleted" x="708" y="0"/>
+</item>
+<item historyLabel="main.c" index="13">
+<position info="not_deleted" x="0" y="0"/>
+</item>
+<item historyLabel="stm32f10x_it.c" index="9">
+<position info="not_deleted" x="2123" y="0"/>
+</item>
+<item active="true" historyLabel="main.c" index="13">
+<position info="not_deleted" x="0" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -461,11 +459,8 @@
 <actionBarAdvisor/>
 </window>
 <mruList>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="deca_usb.c" tooltip="ds_twr_init/usb/deca_usb.c">
-<persistable path="/ds_twr_init/usb/deca_usb.c"/>
-</file>
-<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="stm32f10x_it.c" tooltip="ds_twr_init/platform/stm32f10x_it.c">
-<persistable path="/ds_twr_init/platform/stm32f10x_it.c"/>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="main.c" tooltip="ds_twr_init/main.c">
+<persistable path="/ds_twr_init/main.c"/>
 </file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usbd_conf.h" tooltip="DecaRanging/src/usb/usbd_conf.h">
 <persistable path="/DecaRanging/src/usb/usbd_conf.h"/>
@@ -505,6 +500,9 @@
 </file>
 <file factoryID="org.eclipse.ui.ide.FileStoreEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="semihosting.c" tooltip="C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Examples\I2CTester\semihosting\semihosting.c">
 <persistable uri="file:/C:/CooCox/CoIDE/workspace/EVK_Example_Projects/Examples/I2CTester/semihosting/semihosting.c"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.cdt.ui.editor.CEditor" name="usbd_conf.h" tooltip="DecaRanging/src/usb/usbd_conf.h">
+<persistable path="/DecaRanging/src/usb/usbd_conf.h"/>
 </file>
 </mruList>
 </workbench>
