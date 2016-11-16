@@ -167,6 +167,41 @@ int main(void)
 	/* Set preamble timeout for expected frames. See NOTE 6 below. */
 	dwt_setpreambledetecttimeout(PRE_TIMEOUT);
 
+	//Sending simulated distance data via USB, REMOVE THIS CODE AND REPLACE IN NEXT WHILE LOOP
+	//--------------REMOVE FROM HERE------------------------------
+		uint8 dataseq[32];
+	    uint8 dataseq2[15];
+	    usb_init();
+	    sleep_ms(1000);
+	    char dist_str[32] = "10.3";
+	    float distance1 = 0;
+	    float distance2 = 0;
+	    float distance3 = 0;
+	    float f1 = 1;
+	    float f2 = 1.3;
+	    float f3 = 1.5;
+	    while(1){
+	    	char dist_str[32] = "10.3";
+	    	//printf("\n Dist =  %i-",(int)distance1);
+	    	if((int)distance1 == 10){
+
+	    		distance1 = 0;
+	    		distance2 = 0;
+	    		distance3 = 0;
+	    	}
+
+	    	distance1 +=0.1;
+	    	distance2 = f2*distance1;
+	    	distance3 = f3*distance1;
+	    	int n = sprintf(dist_str, "D1: %i D2: %i D3: %i", (int)(distance1*1000),(int)(distance2*1000),(int)(distance3*1000));
+	        memcpy(dataseq, (const uint8 *) dist_str, n);
+	        send_usbmessage(&dataseq, n);
+
+	        usb_run();
+	        sleep_ms(100);
+	    }
+	//--------------TO HERE---------------------------------------
+
 	/* Loop forever responding to ranging requests. */
 	while (1)
 	{
