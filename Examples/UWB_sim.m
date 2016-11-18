@@ -18,26 +18,19 @@ close all;
 %---------------------------
 %initializing values/ports
 
-time = 100; %For how long will you track?
-port = 'COM3'; %Where 3 is COMport number (usually standard)
-BR = 9600; % BaudRate of port
-obj = serial(port, 'BaudRate', BR); % Creating object to read serial
-                                    % with baudrate 9600
-fopen(obj); %opens object
-i = 1;
-result = zeros(3, time); %resulting vector
-
 % Origin of anchors with the acceptable error
 x1 = 0;
 y1 = 0;
 
 x2 = 0;
-y2 = 1;
+y2 = 0.2;
 
-x3 = 1;
+x3 = 0.2;
 y3 = 0;
 
-e = 0.1;
+e = 0.05;
+time = 1; %For how long will you track?
+result = zeros(3, time); %resulting vector
 %---------------------------
 
 %---------------------------
@@ -51,27 +44,17 @@ figure;
 hold on;
 plot(x1,y1,'ro',x2,y2,'ro',x3,y3,'ro')
 
+i = 1;
 %---------------------------
 %Starts if-statement to plot the position in real time
 %
-while(1)
-    
-    A = fscanf(obj, ['D1: %d D2: %d D3: %d']) %Just put in the string and 
-    %use %d for the values you want
-    
-    if (A(1,1) <= 0)
-        A(1,1) = 10;
-    end
-    if (A(2,1) <= 0)
-        A(2,1) = 10;
-    end
-    if (A(3,1) <= 0)
-        A(3,1) = 10;
-    end
-    
-    A1 = A(1,1)/1000;  %divides it down to [m]
-    A2 = A(2,1)/1000;
-    A3 = A(3,1)/1000;
+simValues = zeros(3,time);
+simValues = [100 160 160];  
+
+while(i<=time)
+    A1 = simValues(i,1)/1000  %divides it down to [m]
+    A2 = simValues(i,2)/1000
+    A3 = simValues(i,3)/1000
   
      
                                               
@@ -79,8 +62,9 @@ while(1)
     result(1,i) = A1; %puts first value on first line each time
     result(2,i) = A2; %same here
     result(3,i) = A3; %same here
-    [xout1, yout1] = circcirc(x1,y1,A1,x2,y2,A2); %checks intersection
-    [xout2, yout2] = circcirc(x1,y1,A1,x3,y3,A3); % - || -
+    
+    [xout1, yout1] = circcirc(x1,y1,A1,x2,y2,A2) %checks intersection
+    [xout2, yout2] = circcirc(x1,y1,A1,x3,y3,A3) % - || -
     
     xo11 = (xout1(1)); %easier to write
     xo12 = (xout1(2));
@@ -129,15 +113,3 @@ while(1)
     i = i+1;
     
 end
-%---------------------------
-
-
-result;
-
-
-%---------------------------
-%closes everything
-fclose(obj);
-delete(obj);
-clear obj;
-%---------------------------
