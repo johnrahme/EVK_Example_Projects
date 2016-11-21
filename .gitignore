@@ -4,6 +4,7 @@ cmsis_boot
 stm_lib
 EVB1000
 EVK1000
+bin
 /Debug
 Examples/2016V_of_deca_app/EVK1000
 # Windows image file caches
