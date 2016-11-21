@@ -1,17 +1,18 @@
 clear all;
+close all;
 format long;
 %javaaddpath(fullfile(matlabroot,'work','triateration.jar'))
 javaaddpath('Trilateration.jar');
 tri = com.lemmingapex.trilateration.TrilaterationTest;
 x1 = 0;
 y1 = 0;
-x2 = 0.2;
+x2 = 2;
 y2 = 0;
 x3 = 0;
-y3 =0.2;
-r1 = 0.13;
-r2 = 0.13;
-r3= 0.13;
+y3 =2;
+r1 = 2;
+r2 = 2;
+r3= 2;
 positions =[ x1,y2; x2, y2 ;  x3, y3 ];
 distances = [r1,r2,r3];
 
@@ -31,4 +32,7 @@ yunit3 = r3 * sin(th) + y3;
 h = plot(xunit3, yunit3);
 h = plot(p(1),p(2), 'b*');
 
-
+e = 0.1;
+punitx = e*cos(th) + p(1);
+punity = e*sin(th) + p(2);
+plot(punitx,punity, 'g-');
