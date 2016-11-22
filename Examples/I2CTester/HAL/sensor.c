@@ -174,9 +174,9 @@ int16_t   OUT_X_GYRO,OUT_Y_GYRO,OUT_Z_GYRO;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
-void SystemClock_Config(void);
+//void SystemClock_Config(void); removed multiple declarations
 void Error_Handler(void);
-static void MX_GPIO_Init(void);
+//static void MX_GPIO_Init(void);removed multiple declarations
 static void MX_I2C2_Init(void);
 
 /* USER CODE BEGIN PFP */
@@ -198,10 +198,10 @@ void sensorSetup(){
 	  HAL_Init();
 
 	  /* Configure the system clock */
-	  SystemClock_Config();
+	  //SystemClock_Config();
 
 	  /* Initialize all configured peripherals */
-	  MX_GPIO_Init();
+	  //MX_GPIO_Init();
 	  MX_I2C2_Init();
 
 	  /* USER CODE BEGIN 2 */
@@ -377,7 +377,7 @@ void printSensorData(){
 
 }
 
-void SystemClock_Config(void)
+/*void SystemClock_Config(void)
 {
 
   RCC_OscInitTypeDef RCC_OscInitStruct;
@@ -410,9 +410,9 @@ void SystemClock_Config(void)
 
   __HAL_RCC_PLLI2S_ENABLE();
 
-  /* SysTick_IRQn interrupt configuration */
+   SysTick_IRQn interrupt configuration
   HAL_NVIC_SetPriority(SysTick_IRQn, 0, 0);
-}
+}*/
 
 /* I2C2 init function */
 static void MX_I2C2_Init(void)
@@ -441,14 +441,14 @@ static void MX_I2C2_Init(void)
         * EVENT_OUT
         * EXTI
 */
-static void MX_GPIO_Init(void)
+/*static void MX_GPIO_Init(void)
 {
 
-  /* GPIO Ports Clock Enable */
+   GPIO Ports Clock Enable
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
-}
+}*/
 
 /* USER CODE BEGIN 4 */
 

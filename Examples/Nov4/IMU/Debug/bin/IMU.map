@@ -530,7 +530,7 @@ Linker script and memory map
 
                 0x20010000                _eram = 0x20010000
 
-.text           0x08000000     0x3a64
+.text           0x08000000     0x3a60
  *(.isr_vector)
  .isr_vector    0x08000000      0x154 ..\obj\startup_stm32f10x_cl.o
                 0x08000000                g_pfnVectors
@@ -623,164 +623,164 @@ Linker script and memory map
  .text.HAL_RCC_GetPCLK1Freq
                 0x08001ca0       0x44 ..\obj\stm32f1xx_hal_rcc.o
                 0x08001ca0                HAL_RCC_GetPCLK1Freq
- .text.main     0x08001ce4       0x14 ..\obj\main.o
+ .text.main     0x08001ce4       0x10 ..\obj\main.o
                 0x08001ce4                main
  .text.sensorSetup
-                0x08001cf8      0x168 ..\obj\sensor.o
-                0x08001cf8                sensorSetup
+                0x08001cf4      0x168 ..\obj\sensor.o
+                0x08001cf4                sensorSetup
  .text.printSensorData
-                0x08001e60      0x290 ..\obj\sensor.o
-                0x08001e60                printSensorData
+                0x08001e5c      0x290 ..\obj\sensor.o
+                0x08001e5c                printSensorData
  .text.SystemClock_Config
-                0x080020f0       0xac ..\obj\sensor.o
-                0x080020f0                SystemClock_Config
+                0x080020ec       0xac ..\obj\sensor.o
+                0x080020ec                SystemClock_Config
  .text.MX_I2C2_Init
-                0x0800219c       0x5c ..\obj\sensor.o
+                0x08002198       0x5c ..\obj\sensor.o
  .text.MX_GPIO_Init
-                0x080021f8       0x44 ..\obj\sensor.o
+                0x080021f4       0x44 ..\obj\sensor.o
  .text.Error_Handler
-                0x0800223c        0x8 ..\obj\sensor.o
-                0x0800223c                Error_Handler
+                0x08002238        0x8 ..\obj\sensor.o
+                0x08002238                Error_Handler
  .text.PrintChar
-                0x08002244       0x1c ..\obj\printf.o
-                0x08002244                PrintChar
- .text.PutChar  0x08002260       0x20 ..\obj\printf.o
-                0x08002260                PutChar
+                0x08002240       0x1c ..\obj\printf.o
+                0x08002240                PrintChar
+ .text.PutChar  0x0800225c       0x20 ..\obj\printf.o
+                0x0800225c                PutChar
  .text.PutString
-                0x08002280       0x3c ..\obj\printf.o
-                0x08002280                PutString
+                0x0800227c       0x3c ..\obj\printf.o
+                0x0800227c                PutString
  .text.PutUnsignedInt
-                0x080022bc       0x9c ..\obj\printf.o
-                0x080022bc                PutUnsignedInt
+                0x080022b8       0x9c ..\obj\printf.o
+                0x080022b8                PutUnsignedInt
  .text.PutSignedInt
-                0x08002358       0xf8 ..\obj\printf.o
-                0x08002358                PutSignedInt
- .text.PutHexa  0x08002450       0xd4 ..\obj\printf.o
-                0x08002450                PutHexa
+                0x08002354       0xf8 ..\obj\printf.o
+                0x08002354                PutSignedInt
+ .text.PutHexa  0x0800244c       0xd4 ..\obj\printf.o
+                0x0800244c                PutHexa
  .text.vsnprintf
-                0x08002524      0x254 ..\obj\printf.o
-                0x08002524                vsnprintf
+                0x08002520      0x254 ..\obj\printf.o
+                0x08002520                vsnprintf
  .text.vsprintf
-                0x08002778       0x24 ..\obj\printf.o
-                0x08002778                vsprintf
+                0x08002774       0x24 ..\obj\printf.o
+                0x08002774                vsprintf
  .text.vfprintf
-                0x0800279c       0x68 ..\obj\printf.o
-                0x0800279c                vfprintf
- .text.vprintf  0x08002804       0x28 ..\obj\printf.o
-                0x08002804                vprintf
- .text.printf   0x0800282c       0x28 ..\obj\printf.o
-                0x0800282c                printf
- .text.fputc    0x08002854       0x40 ..\obj\printf.o
-                0x08002854                fputc
- .text.fputs    0x08002894       0x48 ..\obj\printf.o
-                0x08002894                fputs
+                0x08002798       0x68 ..\obj\printf.o
+                0x08002798                vfprintf
+ .text.vprintf  0x08002800       0x28 ..\obj\printf.o
+                0x08002800                vprintf
+ .text.printf   0x08002828       0x28 ..\obj\printf.o
+                0x08002828                printf
+ .text.fputc    0x08002850       0x40 ..\obj\printf.o
+                0x08002850                fputc
+ .text.fputs    0x08002890       0x48 ..\obj\printf.o
+                0x08002890                fputs
  .text.Default_Reset_Handler
-                0x080028dc       0x60 ..\obj\startup_stm32f10x_cl.o
-                0x080028dc                Default_Reset_Handler
-                0x080028dc                Reset_Handler
+                0x080028d8       0x60 ..\obj\startup_stm32f10x_cl.o
+                0x080028d8                Default_Reset_Handler
+                0x080028d8                Reset_Handler
  .text.Default_Handler
-                0x0800293c        0x8 ..\obj\startup_stm32f10x_cl.o
-                0x0800293c                EXTI2_IRQHandler
-                0x0800293c                TIM1_CC_IRQHandler
-                0x0800293c                TIM6_IRQHandler
-                0x0800293c                PVD_IRQHandler
-                0x0800293c                CAN2_RX1_IRQHandler
-                0x0800293c                EXTI3_IRQHandler
-                0x0800293c                EXTI0_IRQHandler
-                0x0800293c                I2C2_EV_IRQHandler
-                0x0800293c                CAN1_RX0_IRQHandler
-                0x0800293c                CAN2_SCE_IRQHandler
-                0x0800293c                ADC1_2_IRQHandler
-                0x0800293c                SPI1_IRQHandler
-                0x0800293c                TAMPER_IRQHandler
-                0x0800293c                CAN2_RX0_IRQHandler
-                0x0800293c                DMA2_Channel2_IRQHandler
-                0x0800293c                DMA1_Channel4_IRQHandler
-                0x0800293c                USART3_IRQHandler
-                0x0800293c                RTC_IRQHandler
-                0x0800293c                DMA1_Channel7_IRQHandler
-                0x0800293c                CAN1_RX1_IRQHandler
-                0x0800293c                UART5_IRQHandler
-                0x0800293c                TIM4_IRQHandler
-                0x0800293c                DMA2_Channel1_IRQHandler
-                0x0800293c                I2C1_EV_IRQHandler
-                0x0800293c                DMA1_Channel6_IRQHandler
-                0x0800293c                UART4_IRQHandler
-                0x0800293c                DMA2_Channel4_IRQHandler
-                0x0800293c                TIM3_IRQHandler
-                0x0800293c                RCC_IRQHandler
-                0x0800293c                TIM1_TRG_COM_IRQHandler
-                0x0800293c                DMA1_Channel1_IRQHandler
-                0x0800293c                EXTI15_10_IRQHandler
-                0x0800293c                TIM7_IRQHandler
-                0x0800293c                CAN2_TX_IRQHandler
-                0x0800293c                TIM5_IRQHandler
-                0x0800293c                EXTI9_5_IRQHandler
-                0x0800293c                ETH_WKUP_IRQHandler
-                0x0800293c                SPI2_IRQHandler
-                0x0800293c                CAN1_TX_IRQHandler
-                0x0800293c                DMA2_Channel5_IRQHandler
-                0x0800293c                DMA1_Channel5_IRQHandler
-                0x0800293c                EXTI4_IRQHandler
-                0x0800293c                DMA1_Channel3_IRQHandler
-                0x0800293c                ETH_IRQHandler
-                0x0800293c                TIM1_UP_IRQHandler
-                0x0800293c                WWDG_IRQHandler
-                0x0800293c                TIM2_IRQHandler
-                0x0800293c                OTG_FS_WKUP_IRQHandler
-                0x0800293c                TIM1_BRK_IRQHandler
-                0x0800293c                EXTI1_IRQHandler
-                0x0800293c                RTCAlarm_IRQHandler
-                0x0800293c                USART2_IRQHandler
-                0x0800293c                I2C2_ER_IRQHandler
-                0x0800293c                DMA1_Channel2_IRQHandler
-                0x0800293c                CAN1_SCE_IRQHandler
-                0x0800293c                FLASH_IRQHandler
-                0x0800293c                USART1_IRQHandler
-                0x0800293c                OTG_FS_IRQHandler
-                0x0800293c                SPI3_IRQHandler
-                0x0800293c                I2C1_ER_IRQHandler
-                0x0800293c                DMA2_Channel3_IRQHandler
+                0x08002938        0x8 ..\obj\startup_stm32f10x_cl.o
+                0x08002938                EXTI2_IRQHandler
+                0x08002938                TIM1_CC_IRQHandler
+                0x08002938                TIM6_IRQHandler
+                0x08002938                PVD_IRQHandler
+                0x08002938                CAN2_RX1_IRQHandler
+                0x08002938                EXTI3_IRQHandler
+                0x08002938                EXTI0_IRQHandler
+                0x08002938                I2C2_EV_IRQHandler
+                0x08002938                CAN1_RX0_IRQHandler
+                0x08002938                CAN2_SCE_IRQHandler
+                0x08002938                ADC1_2_IRQHandler
+                0x08002938                SPI1_IRQHandler
+                0x08002938                TAMPER_IRQHandler
+                0x08002938                CAN2_RX0_IRQHandler
+                0x08002938                DMA2_Channel2_IRQHandler
+                0x08002938                DMA1_Channel4_IRQHandler
+                0x08002938                USART3_IRQHandler
+                0x08002938                RTC_IRQHandler
+                0x08002938                DMA1_Channel7_IRQHandler
+                0x08002938                CAN1_RX1_IRQHandler
+                0x08002938                UART5_IRQHandler
+                0x08002938                TIM4_IRQHandler
+                0x08002938                DMA2_Channel1_IRQHandler
+                0x08002938                I2C1_EV_IRQHandler
+                0x08002938                DMA1_Channel6_IRQHandler
+                0x08002938                UART4_IRQHandler
+                0x08002938                DMA2_Channel4_IRQHandler
+                0x08002938                TIM3_IRQHandler
+                0x08002938                RCC_IRQHandler
+                0x08002938                TIM1_TRG_COM_IRQHandler
+                0x08002938                DMA1_Channel1_IRQHandler
+                0x08002938                EXTI15_10_IRQHandler
+                0x08002938                TIM7_IRQHandler
+                0x08002938                CAN2_TX_IRQHandler
+                0x08002938                TIM5_IRQHandler
+                0x08002938                EXTI9_5_IRQHandler
+                0x08002938                ETH_WKUP_IRQHandler
+                0x08002938                SPI2_IRQHandler
+                0x08002938                CAN1_TX_IRQHandler
+                0x08002938                DMA2_Channel5_IRQHandler
+                0x08002938                DMA1_Channel5_IRQHandler
+                0x08002938                EXTI4_IRQHandler
+                0x08002938                DMA1_Channel3_IRQHandler
+                0x08002938                ETH_IRQHandler
+                0x08002938                TIM1_UP_IRQHandler
+                0x08002938                WWDG_IRQHandler
+                0x08002938                TIM2_IRQHandler
+                0x08002938                OTG_FS_WKUP_IRQHandler
+                0x08002938                TIM1_BRK_IRQHandler
+                0x08002938                EXTI1_IRQHandler
+                0x08002938                RTCAlarm_IRQHandler
+                0x08002938                USART2_IRQHandler
+                0x08002938                I2C2_ER_IRQHandler
+                0x08002938                DMA1_Channel2_IRQHandler
+                0x08002938                CAN1_SCE_IRQHandler
+                0x08002938                FLASH_IRQHandler
+                0x08002938                USART1_IRQHandler
+                0x08002938                OTG_FS_IRQHandler
+                0x08002938                SPI3_IRQHandler
+                0x08002938                I2C1_ER_IRQHandler
+                0x08002938                DMA2_Channel3_IRQHandler
  .text.HAL_GPIO_Init
-                0x08002944      0x2bc ..\obj\stm32f1xx_hal_gpio.o
-                0x08002944                HAL_GPIO_Init
- .text          0x08002c00       0x26 ..\obj\sh_cmd.o
-                0x08002c00                SH_DoCommand
-                0x08002c12                HardFault_Handler
- *fill*         0x08002c26        0x2 
+                0x08002940      0x2bc ..\obj\stm32f1xx_hal_gpio.o
+                0x08002940                HAL_GPIO_Init
+ .text          0x08002bfc       0x26 ..\obj\sh_cmd.o
+                0x08002bfc                SH_DoCommand
+                0x08002c0e                HardFault_Handler
+ *fill*         0x08002c22        0x2 
  .text.HAL_I2C_Init
-                0x08002c28      0x10c ..\obj\stm32f1xx_hal_i2c.o
-                0x08002c28                HAL_I2C_Init
+                0x08002c24      0x10c ..\obj\stm32f1xx_hal_i2c.o
+                0x08002c24                HAL_I2C_Init
  .text.HAL_I2C_Master_Transmit
-                0x08002d34      0x19c ..\obj\stm32f1xx_hal_i2c.o
-                0x08002d34                HAL_I2C_Master_Transmit
+                0x08002d30      0x19c ..\obj\stm32f1xx_hal_i2c.o
+                0x08002d30                HAL_I2C_Master_Transmit
  .text.HAL_I2C_Master_Receive
-                0x08002ed0      0x320 ..\obj\stm32f1xx_hal_i2c.o
-                0x08002ed0                HAL_I2C_Master_Receive
+                0x08002ecc      0x320 ..\obj\stm32f1xx_hal_i2c.o
+                0x08002ecc                HAL_I2C_Master_Receive
  .text.I2C_MasterRequestWrite
-                0x080031f0       0xc8 ..\obj\stm32f1xx_hal_i2c.o
+                0x080031ec       0xc8 ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_MasterRequestRead
-                0x080032b8      0x14c ..\obj\stm32f1xx_hal_i2c.o
+                0x080032b4      0x14c ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_Configure_Speed
-                0x08003404       0x9c ..\obj\stm32f1xx_hal_i2c.o
+                0x08003400       0x9c ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnFlagUntilTimeout
-                0x080034a0      0x114 ..\obj\stm32f1xx_hal_i2c.o
+                0x0800349c      0x114 ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnMasterAddressFlagUntilTimeout
-                0x080035b4       0xdc ..\obj\stm32f1xx_hal_i2c.o
+                0x080035b0       0xdc ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnTXEFlagUntilTimeout
-                0x08003690       0x78 ..\obj\stm32f1xx_hal_i2c.o
+                0x0800368c       0x78 ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnBTFFlagUntilTimeout
-                0x08003708       0x78 ..\obj\stm32f1xx_hal_i2c.o
+                0x08003704       0x78 ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_WaitOnRXNEFlagUntilTimeout
-                0x08003780       0x9c ..\obj\stm32f1xx_hal_i2c.o
+                0x0800377c       0x9c ..\obj\stm32f1xx_hal_i2c.o
  .text.I2C_IsAcknowledgeFailed
-                0x0800381c       0x4c ..\obj\stm32f1xx_hal_i2c.o
+                0x08003818       0x4c ..\obj\stm32f1xx_hal_i2c.o
  .text.HAL_MspInit
-                0x08003868       0x98 ..\obj\stm32f1xx_hal_msp.o
-                0x08003868                HAL_MspInit
+                0x08003864       0x98 ..\obj\stm32f1xx_hal_msp.o
+                0x08003864                HAL_MspInit
  .text.HAL_I2C_MspInit
-                0x08003900       0x58 ..\obj\stm32f1xx_hal_msp.o
-                0x08003900                HAL_I2C_MspInit
+                0x080038fc       0x58 ..\obj\stm32f1xx_hal_msp.o
+                0x080038fc                HAL_I2C_MspInit
  *(.init)
  *(.fini)
  *crtbegin.o(.ctors)
@@ -794,44 +794,44 @@ Linker script and memory map
  *(SORT(.dtors.*))
  *(.dtors)
  *(.rodata*)
- .rodata        0x08003958       0x18 ..\obj\system_stm32f1xx.o
-                0x08003958                AHBPrescTable
-                0x08003968                APBPrescTable
- .rodata        0x08003970       0x1c ..\obj\stm32f1xx_hal_rcc.o
- .rodata        0x0800398c       0xb3 ..\obj\sensor.o
- *fill*         0x08003a3f        0x1 
- .rodata        0x08003a40       0x24 ..\obj\printf.o
+ .rodata        0x08003954       0x18 ..\obj\system_stm32f1xx.o
+                0x08003954                AHBPrescTable
+                0x08003964                APBPrescTable
+ .rodata        0x0800396c       0x1c ..\obj\stm32f1xx_hal_rcc.o
+ .rodata        0x08003988       0xb3 ..\obj\sensor.o
+ *fill*         0x08003a3b        0x1 
+ .rodata        0x08003a3c       0x24 ..\obj\printf.o
  *(.eh_fram e*)
 
-.glue_7         0x08003a64        0x0
- .glue_7        0x08003a64        0x0 linker stubs
+.glue_7         0x08003a60        0x0
+ .glue_7        0x08003a60        0x0 linker stubs
 
-.glue_7t        0x08003a64        0x0
- .glue_7t       0x08003a64        0x0 linker stubs
+.glue_7t        0x08003a60        0x0
+ .glue_7t       0x08003a60        0x0 linker stubs
 
-.vfp11_veneer   0x08003a64        0x0
- .vfp11_veneer  0x08003a64        0x0 linker stubs
+.vfp11_veneer   0x08003a60        0x0
+ .vfp11_veneer  0x08003a60        0x0 linker stubs
 
-.v4_bx          0x08003a64        0x0
- .v4_bx         0x08003a64        0x0 linker stubs
+.v4_bx          0x08003a60        0x0
+ .v4_bx         0x08003a60        0x0 linker stubs
 
-.iplt           0x08003a64        0x0
- .iplt          0x08003a64        0x0 ..\obj\stm32f1xx_hal_rcc_ex.o
+.iplt           0x08003a60        0x0
+ .iplt          0x08003a60        0x0 ..\obj\stm32f1xx_hal_rcc_ex.o
 
-.rel.dyn        0x08003a64        0x0
- .rel.iplt      0x08003a64        0x0 ..\obj\stm32f1xx_hal_rcc_ex.o
+.rel.dyn        0x08003a60        0x0
+ .rel.iplt      0x08003a60        0x0 ..\obj\stm32f1xx_hal_rcc_ex.o
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x08003a64                __exidx_start = .
+                0x08003a60                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x08003a64                __exidx_end = .
-                0x08003a64                __etext = .
-                0x08003a64                _sidata = __etext
+                0x08003a60                __exidx_end = .
+                0x08003a60                __etext = .
+                0x08003a60                _sidata = __etext
 
-.data           0x20000000      0x434 load address 0x08003a64
+.data           0x20000000      0x434 load address 0x08003a60
                 0x20000000                __data_start__ = .
                 0x20000000                _sdata = __data_start__
  *(vtable)
@@ -861,10 +861,10 @@ Linker script and memory map
                 0x20000434                __data_end__ = .
                 0x20000434                _edata = __data_end__
 
-.igot.plt       0x20000434        0x0 load address 0x08003e98
+.igot.plt       0x20000434        0x0 load address 0x08003e94
  .igot.plt      0x20000434        0x0 ..\obj\stm32f1xx_hal_rcc_ex.o
 
-.bss            0x20000434       0xe8 load address 0x08003e98
+.bss            0x20000434       0xe8 load address 0x08003e94
                 0x20000434                . = ALIGN (0x4)
                 0x20000434                __bss_start__ = .
                 0x20000434                _sbss = __bss_start__
@@ -902,7 +902,7 @@ Linker script and memory map
  *(.heap*)
                 0x2000051c                __HeapLimit = .
 
-.co_stack       0x2000051c      0x404 load address 0x08003f80
+.co_stack       0x2000051c      0x404 load address 0x08003f7c
                 0x20000520                . = ALIGN (0x8)
  *fill*         0x2000051c        0x4 
  *(.co_stack .co_stack.*)
@@ -1022,21 +1022,21 @@ OUTPUT(IMU.elf elf32-littlearm)
  .debug_ranges  0x000003c0      0x208 ..\obj\stm32f1xx_hal_i2c.o
  .debug_ranges  0x000005c8       0x20 ..\obj\stm32f1xx_hal_msp.o
 
-.debug_line     0x00000000     0x3f8b
+.debug_line     0x00000000     0x3f93
  .debug_line    0x00000000       0xc3 ..\obj\semihosting.o
  .debug_line    0x000000c3      0x441 ..\obj\stm32f1xx_hal.o
  .debug_line    0x00000504      0x239 ..\obj\stm32f1xx_it.o
  .debug_line    0x0000073d      0x4fb ..\obj\stm32f1xx_hal_cortex.o
  .debug_line    0x00000c38      0x2a8 ..\obj\system_stm32f1xx.o
  .debug_line    0x00000ee0      0xd64 ..\obj\stm32f1xx_hal_rcc.o
- .debug_line    0x00001c44       0x7e ..\obj\main.o
- .debug_line    0x00001cc2      0x3f5 ..\obj\sensor.o
- .debug_line    0x000020b7      0x38c ..\obj\printf.o
- .debug_line    0x00002443       0xba ..\obj\startup_stm32f10x_cl.o
- .debug_line    0x000024fd      0x4d5 ..\obj\stm32f1xx_hal_gpio.o
- .debug_line    0x000029d2       0x94 ..\obj\sh_cmd.o
- .debug_line    0x00002a66     0x11fa ..\obj\stm32f1xx_hal_i2c.o
- .debug_line    0x00003c60      0x32b ..\obj\stm32f1xx_hal_msp.o
+ .debug_line    0x00001c44       0x86 ..\obj\main.o
+ .debug_line    0x00001cca      0x3f5 ..\obj\sensor.o
+ .debug_line    0x000020bf      0x38c ..\obj\printf.o
+ .debug_line    0x0000244b       0xba ..\obj\startup_stm32f10x_cl.o
+ .debug_line    0x00002505      0x4d5 ..\obj\stm32f1xx_hal_gpio.o
+ .debug_line    0x000029da       0x94 ..\obj\sh_cmd.o
+ .debug_line    0x00002a6e     0x11fa ..\obj\stm32f1xx_hal_i2c.o
+ .debug_line    0x00003c68      0x32b ..\obj\stm32f1xx_hal_msp.o
 
 .debug_str      0x00000000     0x2553
  .debug_str     0x00000000      0x1bd ..\obj\semihosting.o

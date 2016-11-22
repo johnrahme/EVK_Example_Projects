@@ -40,5 +40,7 @@
 int main(void)
 {
 	sensorSetup();
-	printSensorData();
+	while(1){
+		printSensorData();
+	}
 }

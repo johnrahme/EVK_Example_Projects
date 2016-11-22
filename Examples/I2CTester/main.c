@@ -160,7 +160,7 @@ int main(void)
     float f1 = 1;
     float f2 = 1.3;
     float f3 = 1.5;
-    while(1){
+    while(0){
     	char dist_str[32] = "10.3";
     	//printf("\n Dist =  %i-",(int)distance1);
     	if((int)distance1 == 10){
