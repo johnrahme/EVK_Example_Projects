@@ -16,7 +16,7 @@ tri = com.lemmingapex.trilateration.TrilaterationTest;
 %---------------------------
 %@@@@@@@@@@@@@@@@@@@@@@@@@@@
 %---------------------------
-%          INFO:
+%          INFO
 %
 % Mother anchor = A(1)
 % Anchor 1 = A(2)
@@ -35,7 +35,6 @@ obj = serial(port, 'BaudRate', BR); % Creating object to read serial
 fopen(obj); %opens object
 
 % Origin of anchors
-% (Needs to be hard coded)
 x1 = 0;
 y1 = 0;
 
@@ -86,7 +85,7 @@ while(1)
     disp(p);
     
     %Th for plotting of circles.
-    %rX for each radius of circle (distances).
+    % rX for each radius of circle.
     th = 0:pi/50:2*pi;
     xunit = r1 * cos(th) + x1;
     yunit = r1 * sin(th) + y1;
@@ -100,10 +99,10 @@ while(1)
     yunit3 = r3 * sin(th) + y3;
     h = plot(xunit3, yunit3);
     
-    %Plot the estimated position with an error of e-meters around it.
     h = plot(p(1),p(2), 'b*');
     
     e = 0.1;
+    
     punitx = e*cos(th) + p(1);
     punity = e*sin(th) + p(2);
     plot(punitx,punity, 'g-');
@@ -114,13 +113,3 @@ while(1)
     hold off;
     
 end
-
-
-%@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-%           End info
-
-% If canceled MATLAB will need a restart due 
-% to COMport already being used. Seems to be a problem
-% that cant be solved.
-
-%@@@@@@@@@@@@@@@@@@@@@@@@@@@@
