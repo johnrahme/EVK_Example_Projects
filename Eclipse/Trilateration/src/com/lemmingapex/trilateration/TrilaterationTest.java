@@ -150,7 +150,8 @@ public class TrilaterationTest {
 	public double[] trilateration2DInexact1(double[][] positions, double[] distances) throws Exception {
 		//double[][] positions = new double[][] { { 1.0, 1.0 }, { 3.0, 1.0 }, { 2.0, 2.0 } };
 		//double[] distances = new double[] { 0.9, 1.0, 1.0 };
-
+		
+		// Distance and anchor position as inputs instead of hard coded. 
 		TrilaterationFunction trilaterationFunction = new TrilaterationFunction(positions, distances);
 		LinearLeastSquaresSolver lSolver = new LinearLeastSquaresSolver(trilaterationFunction);
 		NonLinearLeastSquaresSolver nlSolver = new NonLinearLeastSquaresSolver(trilaterationFunction, new LevenbergMarquardtOptimizer());
@@ -160,7 +161,7 @@ public class TrilaterationTest {
 		Optimum optimum = nlSolver.solve();
 		double[] calculatedPosition = optimum.getPoint().toArray();
 		testResults(expectedPosition, 0.1, optimum, x);
-		return calculatedPosition;
+		return calculatedPosition; // Changed to return the position instead of void
 	}
 
 	@Test
