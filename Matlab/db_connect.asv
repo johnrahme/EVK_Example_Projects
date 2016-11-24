@@ -1,0 +1,10 @@
+clear all;
+javaaddpath('mysql-connector-java-5.1.40-bin.jar');
+conn = database('uwb','root','','Vendor','MySQL',...
+                'Server','localhost');
+            
+tablename = 'productTable';
+colnames = {'productNumber','stockNumber','supplierNumber',...
+					'unitCost','productDescription'};
+              
+   
