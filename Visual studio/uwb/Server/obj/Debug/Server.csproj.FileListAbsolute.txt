@@ -16,3 +16,13 @@ D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debu
 D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.dll
 D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.pdb
 D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\ApplicationInsights.config
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.exe.config
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.exe
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.pdb
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.dll
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.pdb
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.exe
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.pdb
+C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\MySql.Data.dll
