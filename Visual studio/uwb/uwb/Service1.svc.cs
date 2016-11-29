@@ -5,6 +5,8 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Diagnostics;
+using MySql.Data.MySqlClient;
 
 namespace uwb
 {
@@ -12,26 +14,62 @@ namespace uwb
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
+        Database db = new Database();
+
         public string GetData()
         {
-            return string.Format("You entered: {0}","testyey");
+            db.open();
+            string data = "";
+
+            string query = "Select * from positions";
+
+            MySqlDataReader dataReader = db.getReader(query);
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                data = dataReader["y"] + "";
+                
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            //close Connection
+            db.close();
+            return data;
         }
 
-        public Position[] GetPositions()
+        public Position[] GetPositions(string sessionId)
         {
-            Position p = new Position();
-            p.X = 10;
-            p.Y = 15;
-            p.DateTime = "10 jan 2016";
+            List<Position> positions = new List<Position>();
+            db.open();
+            string data = "";
 
-            Position p2 = new Position();
-            p2.X = 23;
-            p2.Y = 14;
-            p2.DateTime = "13 jan 2017";
-            Position[] positions = new Position[2];
-            positions[0] = p;
-            positions[1] = p2;
-            return positions;
+            string query = "Select * from positions Where sessionId="+ sessionId;
+
+            MySqlDataReader dataReader = db.getReader(query);
+
+            //Read the data and store them in the list
+            while (dataReader.Read())
+            {
+                Position p = new Position();
+                p.X = (float)dataReader["x"];
+                p.Y = (float)dataReader["y"];
+                p.DateTime = dataReader["time"].ToString();
+                p.SessionId = (int)dataReader["sessionId"];
+                positions.Add(p);
+
+
+            }
+
+            //close Data Reader
+            dataReader.Close();
+
+            //close Connection
+            db.close();
+           
+            return positions.ToArray();
         }
     }
 }

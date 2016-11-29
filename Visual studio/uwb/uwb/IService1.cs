@@ -23,8 +23,8 @@ namespace uwb
         [OperationContract]
         [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
                                    BodyStyle = WebMessageBodyStyle.Bare,
-                                   UriTemplate = "getPositions/")]
-        Position[] GetPositions();
+                                   UriTemplate = "getPositions/{sessionId}")]
+        Position[] GetPositions(string sessionId);
     }
 
 
@@ -32,18 +32,19 @@ namespace uwb
     [DataContract]
     public class Position
     {
-        int x = 0;
-        int y = 0;
+        float x = 0;
+        float y = 0;
         string dateTime = "not sets";
+        int sessionId = 0;
 
         [DataMember]
-        public int X
+        public float X
         {
             get { return x; }
             set { x = value; }
         }
         [DataMember]
-        public int Y
+        public float Y
         {
             get { return y; }
             set { y = value; }
@@ -54,6 +55,13 @@ namespace uwb
         {
             get { return dateTime; }
             set { dateTime = value; }
+        }
+
+        [DataMember]
+        public int SessionId
+        {
+            get { return sessionId; }
+            set { sessionId = value; }
         }
     }
 }
