@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.*;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +41,23 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        TextView t= new TextView(this);
+
+        t=(TextView)findViewById(R.id.hello);
+
+
+        RestClient rc = new RestClient();
+        //R.id.hello.text =
+        //String result = rc.requestContent2("http://192.168.1.184/service/getPositions/1");
+        System.out.println("Running");
+        try{
+           rc.run();
+        }
+        catch(Exception e){
+            t.setText(e.toString());
+        }
+
     }
 
     @Override

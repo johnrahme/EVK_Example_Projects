@@ -75,3 +75,4 @@ C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\u
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\uwb.dll
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\uwb.pdb
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\MySql.Data.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\MySql.Data.dll

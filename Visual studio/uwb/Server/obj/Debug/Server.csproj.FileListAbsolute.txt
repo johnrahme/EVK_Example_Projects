@@ -26,3 +26,4 @@ C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debu
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.exe
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.pdb
 C:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\MySql.Data.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\MySql.Data.dll
