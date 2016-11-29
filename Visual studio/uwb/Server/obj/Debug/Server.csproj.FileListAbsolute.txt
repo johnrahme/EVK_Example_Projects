@@ -1,0 +1,9 @@
+D:\Programming\UWB\uwb\Server\bin\Debug\Server.exe.config
+D:\Programming\UWB\uwb\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+D:\Programming\UWB\uwb\Server\bin\Debug\ApplicationInsights.config
+D:\Programming\UWB\uwb\Server\bin\Debug\Server.exe
+D:\Programming\UWB\uwb\Server\bin\Debug\Server.pdb
+D:\Programming\UWB\uwb\Server\bin\Debug\uwb.dll
+D:\Programming\UWB\uwb\Server\bin\Debug\uwb.pdb
+D:\Programming\UWB\uwb\Server\obj\Debug\Server.exe
+D:\Programming\UWB\uwb\Server\obj\Debug\Server.pdb

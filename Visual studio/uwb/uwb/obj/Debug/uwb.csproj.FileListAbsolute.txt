@@ -1,0 +1,38 @@
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\ApplicationInsights.config
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\uwb.dll.config
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\uwb.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\uwb.pdb
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.Web.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.WindowsServer.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.ApplicationInsights.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.Web.xml
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.AI.WindowsServer.xml
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\bin\Microsoft.ApplicationInsights.xml
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\obj\Debug\uwb.dll
+c:\users\user\documents\visual studio 2015\Projects\uwb\uwb\obj\Debug\uwb.pdb
+C:\Users\User\Documents\Visual Studio 2015\Projects\uwb\uwb\obj\Debug\uwb.csprojResolveAssemblyReference.cache
+D:\Programming\UWB\uwb\uwb\bin\ApplicationInsights.config
+D:\Programming\UWB\uwb\uwb\bin\uwb.dll.config
+D:\Programming\UWB\uwb\uwb\bin\uwb.dll
+D:\Programming\UWB\uwb\uwb\bin\uwb.pdb
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.DependencyCollector.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.Web.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.WindowsServer.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.ApplicationInsights.dll
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.DependencyCollector.xml
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.Web.xml
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.WindowsServer.xml
+D:\Programming\UWB\uwb\uwb\bin\Microsoft.ApplicationInsights.xml
+D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.csprojResolveAssemblyReference.cache
+D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.dll
+D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.pdb
