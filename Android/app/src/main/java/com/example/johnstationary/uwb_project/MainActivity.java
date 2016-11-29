@@ -17,6 +17,8 @@ import android.widget.*;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
+    TextView helloWorldView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +44,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TextView t= new TextView(this);
+        helloWorldView= new TextView(this);
 
-        t=(TextView)findViewById(R.id.hello);
+        helloWorldView=(TextView)findViewById(R.id.hello);
 
 
-        RestClient rc = new RestClient();
+        RestClient rc = new RestClient(this);
+
         //R.id.hello.text =
         //String result = rc.requestContent2("http://192.168.1.184/service/getPositions/1");
         System.out.println("Running");
@@ -55,7 +58,7 @@ public class MainActivity extends AppCompatActivity
            rc.run();
         }
         catch(Exception e){
-            t.setText(e.toString());
+            helloWorldView.setText(e.toString());
         }
 
     }

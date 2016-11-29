@@ -1,33 +1,18 @@
 package com.example.johnstationary.uwb_project;
-import java.net.*;
 import java.io.*;
 import okhttp3.*;
+import android.widget.*;
+
 public class RestClient
 {
-    public URL url;
-    private HttpURLConnection con;
-    private BufferedReader reader;
+    protected MainActivity context;
+    String message = "";
     OkHttpClient client = new OkHttpClient();
-    public String requestContent(String stringUrl) {
-        StringBuilder sb = new StringBuilder();
-        String line;
-        try {
-            url = new URL(stringUrl);
-            con = (HttpURLConnection) url.openConnection();
-            reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            while((line = reader.readLine()) != null){
-                sb.append(line+"\n");
-            }
-            reader.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        return line;
-
+    public RestClient(MainActivity _context){
+        context = _context;
     }
     public void run() throws Exception {
+        //final TextView text = t;
         Request request = new Request.Builder()
                 .url("http://192.168.1.184/service/getPositions/1")
                 .build();
@@ -46,8 +31,22 @@ public class RestClient
                 for (int i = 0, size = responseHeaders.size(); i < size; i++) {
                     System.out.println(responseHeaders.name(i) + ": " + responseHeaders.value(i));
                 }
-                
-                System.out.println(response.body().string());
+                message = response.body().string();
+                System.out.println(message+" yeeey");
+                context.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try{
+                            context.helloWorldView.setText(message);
+                            System.out.println("Funkade");
+                        }
+                        catch (Exception e){
+                            System.out.println("Inteeee funk" + e.toString());
+                        }
+                    }
+                });
+
+
             }
         });
     }
