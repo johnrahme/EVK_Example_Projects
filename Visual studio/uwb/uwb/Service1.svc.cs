@@ -14,20 +14,24 @@ namespace uwb
     {
         public string GetData()
         {
-            return string.Format("You entered: {0}","test");
+            return string.Format("You entered: {0}","testyey");
         }
 
-        public CompositeType GetDataUsingDataContract(CompositeType composite)
+        public Position[] GetPositions()
         {
-            if (composite == null)
-            {
-                throw new ArgumentNullException("composite");
-            }
-            if (composite.BoolValue)
-            {
-                composite.StringValue += "Suffix";
-            }
-            return composite;
+            Position p = new Position();
+            p.X = 10;
+            p.Y = 15;
+            p.DateTime = "10 jan 2016";
+
+            Position p2 = new Position();
+            p2.X = 23;
+            p2.Y = 14;
+            p2.DateTime = "13 jan 2017";
+            Position[] positions = new Position[2];
+            positions[0] = p;
+            positions[1] = p2;
+            return positions;
         }
     }
 }

@@ -20,31 +20,40 @@ namespace uwb
         string GetData();
 
         //[OperationContract]
-        //CompositeType GetDataUsingDataContract(CompositeType composite);
-
-        // TODO: Add your service operations here
+        [OperationContract]
+        [WebInvoke(Method = "GET", ResponseFormat = WebMessageFormat.Json,
+                                   BodyStyle = WebMessageBodyStyle.Bare,
+                                   UriTemplate = "getPositions/")]
+        Position[] GetPositions();
     }
 
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.
     [DataContract]
-    public class CompositeType
+    public class Position
     {
-        bool boolValue = true;
-        string stringValue = "Hello ";
+        int x = 0;
+        int y = 0;
+        string dateTime = "not sets";
 
         [DataMember]
-        public bool BoolValue
+        public int X
         {
-            get { return boolValue; }
-            set { boolValue = value; }
+            get { return x; }
+            set { x = value; }
+        }
+        [DataMember]
+        public int Y
+        {
+            get { return y; }
+            set { y = value; }
         }
 
         [DataMember]
-        public string StringValue
+        public string DateTime
         {
-            get { return stringValue; }
-            set { stringValue = value; }
+            get { return dateTime; }
+            set { dateTime = value; }
         }
     }
 }

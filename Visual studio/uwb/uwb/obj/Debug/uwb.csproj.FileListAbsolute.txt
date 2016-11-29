@@ -33,6 +33,25 @@ D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.xml
 D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.Web.xml
 D:\Programming\UWB\uwb\uwb\bin\Microsoft.AI.WindowsServer.xml
 D:\Programming\UWB\uwb\uwb\bin\Microsoft.ApplicationInsights.xml
-D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.csprojResolveAssemblyReference.cache
 D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.dll
 D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.pdb
+D:\Programming\UWB\uwb\uwb\obj\Debug\uwb.csprojResolveAssemblyReference.cache
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\ApplicationInsights.config
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\uwb.dll.config
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\uwb.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\uwb.pdb
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.Agent.Intercept.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.DependencyCollector.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.Web.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.WindowsServer.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.ApplicationInsights.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.DependencyCollector.xml
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.Web.xml
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.AI.WindowsServer.xml
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\bin\Microsoft.ApplicationInsights.xml
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\uwb.csprojResolveAssemblyReference.cache
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\uwb.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\uwb\obj\Debug\uwb.pdb

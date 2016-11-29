@@ -13,4 +13,4 @@ sqlquery = 'select * from positions';
 
 curs = exec(conn,sqlquery);
 curs = fetch(curs);
-curs.Data
+curs.Data(1,4)

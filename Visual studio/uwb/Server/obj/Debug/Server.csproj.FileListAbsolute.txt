@@ -7,3 +7,12 @@ D:\Programming\UWB\uwb\Server\bin\Debug\uwb.dll
 D:\Programming\UWB\uwb\Server\bin\Debug\uwb.pdb
 D:\Programming\UWB\uwb\Server\obj\Debug\Server.exe
 D:\Programming\UWB\uwb\Server\obj\Debug\Server.pdb
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.exe.config
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.exe
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.pdb
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\ApplicationInsights.config
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.exe
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\Server.pdb
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.dll
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\bin\Debug\uwb.pdb
+D:\CooCox\CoIDE\workspace\EVK_Example_Projects\Visual studio\uwb\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
