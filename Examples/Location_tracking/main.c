@@ -53,17 +53,17 @@ int mode_selection(void)
 {
 	int mode = 0; /* Mother Anchor*/
 
-	if(is_switch_on(TA_SW1_3) == 0)
+	if(is_switch_on(TA_SW1_3) == 1)
 	{
 		mode = 1; /* Tag*/
 	}
 
-	if(is_switch_on(TA_SW1_4) == 0)
+	if(is_switch_on(TA_SW1_4) == 1)
 	{
 		mode = 2; /* Anchor 1*/
 	}
 
-	if(is_switch_on(TA_SW1_5) == 0)
+	if(is_switch_on(TA_SW1_5) == 1)
 	{
 		mode = 3; /* Anchor 2*/
 	}
@@ -85,19 +85,23 @@ int main(void)
 	int mode = mode_selection();
 	if (mode == 0)
 	{
-#define APP_NAME "MOTHER v1.0"
+//#define APP_NAME "MOTHER v1.0"
+		lcd_display_str("MOTHER v1.0");
 	}
 	if (mode == 1)
 	{
-#define APP_NAME "Tag v1.0"
+		lcd_display_str("Tag v1.0");
+//#define APP_NAME "Tag v1.0"
 	}
 	if (mode == 2)
 	{
-#define APP_NAME "Anchor1 v1.0"
+//#define APP_NAME "Anchor1 v1.0"
+		lcd_display_str("Anchor1 v1.0");
 	}
 	if (mode == 3)
 	{
-#define APP_NAME "Anchor2 v1.0"
+	lcd_display_str("Anchor2 v1.0");
+//#define APP_NAME "Anchor2 v1.0"
 	}
 
 
@@ -147,6 +151,7 @@ int main(void)
 				int n = sprintf(dist_str_2, "D1: %i D2: %i D3: %i", (int)(distance*1000),(int)(distance_2nd*1000),(int)(distance_3*1000));
 				memcpy(dataseq, (const uint8 *) dist_str_2, n);
 				send_usbmessage(&dataseq, n);
+
 				usb_run(); /* Send the distances if there are new values received.*/
 			}
 		}
