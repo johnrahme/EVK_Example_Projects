@@ -80,7 +80,7 @@ handles.x2 = x2;
 handles.y2 = y2;
 
 x3 = 0;
-y3 = 1;
+y3 = 1.5;
 handles.x3 = x3;
 handles.y3 = y3;
 
@@ -110,9 +110,8 @@ handles.xtot = xtot;
 handles.ytot = ytot;
 
 t = timer('StartDelay',1, 'ExecutionMode',...
-          'fixedDelay','Period', 0.5); 
+          'fixedDelay','Period', 0.1); 
 t.TimerFcn = {@timerFcn, hObject, handles};
-
 
 
 
@@ -125,7 +124,8 @@ guidata(hObject, handles);
 % UIWAIT makes Simple_UWB wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
-function timerFcn(obj, event, hObject, handles) 
+function timerFcn(object, event, hObject, handles) 
+    global obj;
     hold on;
     
     %Locks the axis
@@ -136,9 +136,18 @@ function timerFcn(obj, event, hObject, handles)
     
     S.fh = plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
     
-    r1 = rand();
-    r2 = rand();
-    r3 = rand();
+%     r1 = rand();
+%     r2 = rand();
+%     r3 = rand();
+
+    %Just put in the string and 
+    %use %d for the values you want.
+    %Reads data from mother node.
+    A = fscanf(obj, ['D1: %d D2: %d D3: %d']) 
+    
+    r1 = A(1,1)/1000;  %divides it down to [m]
+    r2 = A(2,1)/1000;
+    r3 = A(3,1)/1000;
     
     %Java input, takes the real time distances.
     distances = [r1, r2, r3];
@@ -171,7 +180,7 @@ function timerFcn(obj, event, hObject, handles)
     global result;
     result = [result; p(1) p(2)];    
     
-    pause(0.499); 
+    pause(0.099); 
     clf;
     %delete(h);
     hold off;
@@ -203,6 +212,13 @@ function Run_button_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global t;
+global obj;
+port = 'COM3'; %Where 3 is COMport number (usually standard)
+BR = 9600; % BaudRate of port
+obj = serial(port, 'BaudRate', BR); % Creating object to read serial
+                                    % with baudrate 9600
+fopen(obj); %opens object
+
 start(t);
     
     
@@ -358,13 +374,15 @@ function Stop_button_Callback(hObject, eventdata, handles)
 % What happens when Stop button is pressed
 % closes everything
     global t;
+    global obj;
+   fclose(obj);
+   delete(obj);
+   clear obj;
     stop(t);
     clf;
 %    handles.i 
 %    plot(1,1,'g*');
-%    fclose(handles.obj);
-%    delete(handles.obj);
-%    clear handles.obj;
+
     % Choose default command line output for Simple_UWB
     handles.output = hObject;
 
