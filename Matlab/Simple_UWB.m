@@ -53,7 +53,9 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 % varargin   command line arguments to Simple_UWB (see VARARGIN)
 
 %What should it do when started?
-
+global t;
+global session;
+session = 1;
 %--------------------------
 %@@@@@@@@@@@@@@@@@@@@@@@@@@
 %     Init Java commands
@@ -93,7 +95,7 @@ S.fh = figure('units','pixels',...
 hold on;
 
 S.fh = plot(x1,y1,'ro',x2,y2,'ro',x3,y3,'ro');
-
+global result;
 result = [0, 0];
 handles.result = result;
 
@@ -107,6 +109,13 @@ ytot = [y1,y2,y3];
 handles.xtot = xtot;
 handles.ytot = ytot;
 
+t = timer('StartDelay',1, 'ExecutionMode',...
+          'fixedDelay','Period', 0.5); 
+t.TimerFcn = {@timerFcn, hObject, handles};
+
+
+
+
 % Choose default command line output for Simple_UWB
 handles.output = hObject;
 
@@ -115,6 +124,66 @@ guidata(hObject, handles);
 
 % UIWAIT makes Simple_UWB wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
+
+function timerFcn(obj, event, hObject, handles) 
+    hold on;
+    
+    %Locks the axis
+    xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
+    ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    
+    %Plots the anchors (Which are stationary)
+    
+    S.fh = plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
+    
+    r1 = rand();
+    r2 = rand();
+    r3 = rand();
+    
+    %Java input, takes the real time distances.
+    distances = [r1, r2, r3];
+
+    p = javaMethod('trilateration2DInexact1', handles.tri, handles.positions, distances);
+    disp(p);
+
+    %Th for plotting of circles.
+    %rX for each radius of circle (distances).
+    th = 0:pi/50:2*pi;
+    xunit = r1 * cos(th) + handles.x1;
+    yunit = r1 * sin(th) + handles.y1;
+    S.fh = plot(xunit, yunit);
+    
+    xunit2 = r2 * cos(th) + handles.x2;
+    yunit2 = r2 * sin(th) + handles.y2;
+    S.fh = plot(xunit2, yunit2);
+   
+    xunit3 = r3 * cos(th) + handles.x3;
+    yunit3 = r3 * sin(th) + handles.y3;
+    S.fh = plot(xunit3, yunit3);
+
+    %Plot the estimated position with an error of e-meters around it.
+    h = plot(p(1),p(2), 'b*');
+    
+    e = 0.1;
+    punitx = e*cos(th) + p(1);
+    punity = e*sin(th) + p(2);
+    plot(punitx,punity, 'g-');
+    global result;
+    result = [result; p(1) p(2)];    
+    
+    pause(0.499); 
+    clf;
+    %delete(h);
+    hold off;
+    
+   
+
+    % Choose default command line output for Simple_UWB
+    handles.output = hObject;
+
+    % Update handles structure
+    guidata(hObject, handles);
+    
 
 
 % --- Outputs from this function are returned to the command line.
@@ -133,14 +202,18 @@ function Run_button_Callback(hObject, eventdata, handles)
 % hObject    handle to Run_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global t;
+start(t);
+    
+    
+    
 % % What to do when Run is pressed
 % 
 % port = 'COM3'; %Where 3 is COMport number (usually standard)
 % BR = 9600; % BaudRate of port
-% obj = serial(port, 'BaudRate', BR); % Creating object to read serial
+% handles.obj = serial(port, 'BaudRate', BR); % Creating object to read serial
 %                                     % with baudrate 9600
-% fopen(obj); %opens object
+% fopen(handles.obj); %opens object
 % 
 % while(1)
 %    
@@ -155,7 +228,7 @@ function Run_button_Callback(hObject, eventdata, handles)
 %     %Just put in the string and 
 %     %use %d for the values you want.
 %     %Reads data from mother node.
-%     A = fscanf(obj, ['D1: %d D2: %d D3: %d']) 
+%     A = fscanf(handles.obj, ['D1: %d D2: %d D3: %d']) 
 %     
 %     r1 = A(1,1)/1000;  %divides it down to [m]
 %     r2 = A(2,1)/1000;
@@ -201,79 +274,80 @@ function Run_button_Callback(hObject, eventdata, handles)
 % end
 
 %Testingtesting
-clf;
-while(handles.i < 20)
-    
-    hold on;
-    
-    %Locks the axis
-    xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
-    ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
-    
-    %Plots the anchors (Which are stationary)
-    
-    S.fh = plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
-    
-    %Just put in the string and 
-    %use %d for the values you want.
-    %Reads data from mother node.
-    %A = fscanf(obj, ['D1: %d D2: %d D3: %d']) 
-    
-    %r1 = A(1,1)/1000;  %divides it down to [m]
-    %r2 = A(2,1)/1000;
-    %r3 = A(3,1)/1000;
-    
-    r1 = rand();
-    r2 = rand();
-    r3 = rand();
-    
-    %Java input, takes the real time distances.
-    distances = [r1, r2, r3];
 
-    p = javaMethod('trilateration2DInexact1', handles.tri, handles.positions, distances);
-    disp(p);
-    
-    %Th for plotting of circles.
-    %rX for each radius of circle (distances).
-    th = 0:pi/50:2*pi;
-    xunit = r1 * cos(th) + handles.x1;
-    yunit = r1 * sin(th) + handles.y1;
-    S.fh = plot(xunit, yunit);
-    
-    xunit2 = r2 * cos(th) + handles.x2;
-    yunit2 = r2 * sin(th) + handles.y2;
-    S.fh = plot(xunit2, yunit2);
-   
-    xunit3 = r3 * cos(th) + handles.x3;
-    yunit3 = r3 * sin(th) + handles.y3;
-    S.fh = plot(xunit3, yunit3);
-    
-    %Plot the estimated position with an error of e-meters around it.
-    h = plot(p(1),p(2), 'b*');
-    
-    e = 0.1;
-    punitx = e*cos(th) + p(1);
-    punity = e*sin(th) + p(2);
-    plot(punitx,punity, 'g-');
-    
-    handles.result = [handles.result; p(1) p(2)];
-    handles.result(:,1)
-    result = [handles.result; p(1) p(2)]
-    
-    
-    pause(0.1); 
-    clf
-    %delete(h);
-    hold off;
-    handles.i = handles.i + 1;
-    
+% while(handles.i < 20)
+%     
+%     hold on;
+%     
+%     %Locks the axis
+%     xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
+%     ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+%     
+%     %Plots the anchors (Which are stationary)
+%     
+%     S.fh = plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
+%     
+%     %Just put in the string and 
+%     %use %d for the values you want.
+%     %Reads data from mother node.
+%     %A = fscanf(obj, ['D1: %d D2: %d D3: %d']) 
+%     
+%     %r1 = A(1,1)/1000;  %divides it down to [m]
+%     %r2 = A(2,1)/1000;
+%     %r3 = A(3,1)/1000;
+%     
+%     r1 = rand();
+%     r2 = rand();
+%     r3 = rand();
+%     
+%     %Java input, takes the real time distances.
+%     distances = [r1, r2, r3];
+% 
+%     p = javaMethod('trilateration2DInexact1', handles.tri, handles.positions, distances);
+%     disp(p);
+%     
+%     %Th for plotting of circles.
+%     %rX for each radius of circle (distances).
+%     th = 0:pi/50:2*pi;
+%     xunit = r1 * cos(th) + handles.x1;
+%     yunit = r1 * sin(th) + handles.y1;
+%     S.fh = plot(xunit, yunit);
+%     
+%     xunit2 = r2 * cos(th) + handles.x2;
+%     yunit2 = r2 * sin(th) + handles.y2;
+%     S.fh = plot(xunit2, yunit2);
+%    
+%     xunit3 = r3 * cos(th) + handles.x3;
+%     yunit3 = r3 * sin(th) + handles.y3;
+%     S.fh = plot(xunit3, yunit3);
+%     
+%     %Plot the estimated position with an error of e-meters around it.
+%     h = plot(p(1),p(2), 'b*');
+%     
+%     e = 0.1;
+%     punitx = e*cos(th) + p(1);
+%     punity = e*sin(th) + p(2);
+%     plot(punitx,punity, 'g-');
+%     
+%     handles.result = [handles.result; p(1) p(2)];    
+%     
+%     pause(0.1); 
+%     clf
+%     %delete(h);
+%     hold off;
+%     handles.i = handles.i + 1;
+%     
+%     %if ()
+%      %   break;
+%     %end
+%     
     % Choose default command line output for Simple_UWB
     handles.output = hObject;
 
     % Update handles structure
     guidata(hObject, handles);
-    
-end
+%     
+% end
 
 % --- Executes on button press in Stop_button.
 function Stop_button_Callback(hObject, eventdata, handles)
@@ -283,12 +357,14 @@ function Stop_button_Callback(hObject, eventdata, handles)
 
 % What happens when Stop button is pressed
 % closes everything
+    global t;
+    stop(t);
     clf;
-    handles.i = 0;
-    plot(1,1,'g*');
-    fclose(obj);
-    delete(obj);
-    clear obj;
+%    handles.i 
+%    plot(1,1,'g*');
+%    fclose(handles.obj);
+%    delete(handles.obj);
+%    clear handles.obj;
     % Choose default command line output for Simple_UWB
     handles.output = hObject;
 
@@ -301,11 +377,21 @@ function Previous_button_Callback(hObject, eventdata, handles)
 % hObject    handle to Previous_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+    global t;
+    global result;
+    stop(t);
+    clf;
     hold on;
     handles.i = 0;
+    
+    xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
+    ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    
+    %Plots the anchors (Which are stationary)
+    
     plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro'); 
-    comet(handles.result(:,1),handles.result(:,2));
-    handles.result = [0 0];
+    comet(result(:,1),result(:,2));
+    result = [0 0];
 
     % Choose default command line output for Simple_UWB
     handles.output = hObject;
@@ -315,7 +401,3 @@ function Previous_button_Callback(hObject, eventdata, handles)
 
 
 % --------------------------------------------------------------------
-function uipanel1_ButtonDownFcn(hObject, eventdata, handles)
-% hObject    handle to uipanel1 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
