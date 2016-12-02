@@ -10,6 +10,7 @@
 #include "Anchor1.h"
 #include "Anchor2.h"
 #include "Tag.h"
+#include "sensor.h"
 
 /* Default antenna delay values for 64 MHz PRF. See NOTE 1 below. */
 #define TX_ANT_DLY 16436
@@ -76,6 +77,7 @@ int main(void)
 {
 	/* Start with board specific hardware init. */
 	peripherals_init();
+	initSensor();
 	uint8 dataseq[32];
 	uint8 dataseq2[15];
 	usb_init();
@@ -90,6 +92,7 @@ int main(void)
 	}
 	if (mode == 1)
 	{
+
 		lcd_display_str("Tag v1.0");
 //#define APP_NAME "Tag v1.0"
 	}
@@ -135,7 +138,15 @@ int main(void)
 	/* Set preamble timeout for expected frames. See NOTE 6 below. */
 	dwt_setpreambledetecttimeout(PRE_TIMEOUT);
 
+	while(1){
 
+
+		updateSensor();
+		int n = sprintf(dist_str_2, "D1: %i D2: %i D3: %i", (int)(OUT_X_ACCEL),(int)(OUT_X_MAG),(int)(OUT_X_GYRO));
+		memcpy(dataseq, (const uint8 *) dist_str_2, n);
+		send_usbmessage(&dataseq, n);
+		usb_run();
+	}
 	/* Loop forever responding to ranging requests. */
 	while (1)
 	{
