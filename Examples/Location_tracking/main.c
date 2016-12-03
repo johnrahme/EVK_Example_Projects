@@ -77,11 +77,15 @@ int main(void)
 {
 	/* Start with board specific hardware init. */
 	peripherals_init();
-	initSensor();
-	uint8 dataseq[32];
-	uint8 dataseq2[15];
+
+	//initSensor();
+
 	usb_init();
 	sleep_ms(1000);
+	uint8 dataseq[32];
+	uint8 dataseq2[15];
+
+
 	char dist_str_2[32] = "10.3";
 	/* Display application name on LCD. */
 	int mode = mode_selection();
@@ -138,7 +142,8 @@ int main(void)
 	/* Set preamble timeout for expected frames. See NOTE 6 below. */
 	dwt_setpreambledetecttimeout(PRE_TIMEOUT);
 
-	while(1){
+	//------------FOR TESTING SENSOR----------------
+	/*while(1){
 
 
 		updateSensor();
@@ -146,7 +151,8 @@ int main(void)
 		memcpy(dataseq, (const uint8 *) dist_str_2, n);
 		send_usbmessage(&dataseq, n);
 		usb_run();
-	}
+	}*/
+	//---------------------------------------------
 	/* Loop forever responding to ranging requests. */
 	while (1)
 	{

@@ -7,11 +7,11 @@ numberOfUpdates = 300;
 i = 0;
 x = 0;
 y = 0;
-dx = 2;
-dy = 1;
+dx = 0.01;
+dy = 0.01;
 while(i<numberOfUpdates)
     if(i == 150)
-        dx = -2;
+        dx = -0.01;
     end
     x = x+dx;
     y = y+dy;
