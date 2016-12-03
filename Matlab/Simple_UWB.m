@@ -52,6 +52,9 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Simple_UWB (see VARARGIN)
 
+%connect to db
+db_connect;
+
 %What should it do when started?
 global t;
 global session;
@@ -62,7 +65,7 @@ session = 1;
 %--------------------------
 
 %javaaddpath(fullfile(matlabroot,'work','triateration.jar'))
-javaaddpath('Trilateration.jar');
+%javaaddpath('Trilateration.jar');
 tri = com.lemmingapex.trilateration.TrilaterationTest;
 handles.tri = tri;
 %@@@@ End of java init @@@@@
@@ -212,6 +215,10 @@ function timerFcn(object, event, hObject, handles)
     
     global result;
     result = [result; avgpx avgpy];    
+    
+    %Send to database
+    
+    sendPositionDb(avgpx,avgpy,3);
     
     pause(0.099); 
     clf;

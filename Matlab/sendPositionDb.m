@@ -1,5 +1,4 @@
 function []  = sendPositionDb(xPos,yPos,sessionId)
-db_connect;
 global conn;
 tablename = 'positions';
 colnames = {'x','y','sessionId'};
