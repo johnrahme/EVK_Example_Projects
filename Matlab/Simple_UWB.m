@@ -87,6 +87,9 @@ y3 = 3.45;
 handles.x3 = x3;
 handles.y3 = y3;
 
+global x_exact y_exact;
+x_exact = [0.9 1.75 2.75 3.75 3.75 4.75];
+y_exact = [2.4 1.45 1.45 1.45 2.45 2.45];
 
 handles.i = 1;
 S.fh = figure('units','pixels',...
@@ -216,7 +219,7 @@ if (iteration == 3)
     avgpy = (average(j-5,2)+average(j-4,2)+average(j-3,2)+average(j-2,2)+average(j-1,2))/5;
     avgpx = (average(j-5,1)+average(j-4,1)+average(j-3,1)+average(j-2,1)+average(j-1,1))/5;
     
-    plot(avgpx,avgpy,'b+');
+    plot(avgpx,avgpy,'b*');
     
 %     global KalmanResult;
 %     global w;
@@ -236,6 +239,8 @@ if (iteration == 3)
 %     end
     
         plot(xhat(1), xhat(2),'r*');
+        global x_exact y_exact;
+        plot(x_exact,y_exact, '+k')
     global result;
     result = [result; avgpx avgpy];
     
@@ -356,6 +361,8 @@ function Previous_button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global t;
 global result;
+global x_exact;
+global y_exact;
 stop(t);
 clf;
 hold on;
@@ -366,6 +373,9 @@ ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
 
 %Plots the anchors (Which are stationary)
 
+plot(x_exact,y_exact, '+k')
+xlabel('X')
+ylabel('Y')
 plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
 comet(result(:,1),result(:,2));
 
