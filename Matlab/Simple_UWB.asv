@@ -216,26 +216,23 @@ if (iteration == 3)
     avgpy = (average(j-5,2)+average(j-4,2)+average(j-3,2)+average(j-2,2)+average(j-1,2))/5;
     avgpx = (average(j-5,1)+average(j-4,1)+average(j-3,1)+average(j-2,1)+average(j-1,1))/5;
     
-    plot(avgpx,avgpy,'b+');
+    plot(avgpx,avgpy,'b*');
     
-%     global KalmanResult;
-%     global w;
-%     ptot = [avgpx, avgpy];
-%     r = 1;
-%     xhatd = ptot + w;
-%     for(r = 1: 1: 10)
-%         %Kalman goes here
-%         
-%         P0n = P0;
-%         K = (P0n)/(P0n + sigmaP);
-%         xhat = xhatd + K*(Hk*ptot - xhatd);
-%         xhatd = xhat + w;
-%         P0 = (1-K)*P0n;
-%         KalmanResult = [KalmanResult; xhat(1), xhat(2)];
-%     
-%     end
-    
+    global KalmanResult;
+    ptot = [avgpx, avgpy];
+    r = 1;
+    for(r = 1: 1: 100)
+        %Kalman goes here
+        xhatd = xhat;
+        P0n = P0;
+        K = (P0n)/(P0n + sigmaP);
+        xhat = xhatd + K*(Hk*ptot- xhatd);
+        P0 = (1-K)*P0n;
         plot(xhat(1), xhat(2),'r*');
+        KalmanResult = [KalmanResult; xhat(1), xhat(2)];
+    
+    end
+   
     global result;
     result = [result; avgpx avgpy];
     
@@ -297,9 +294,6 @@ sigmaP = 0.1;
 
 global sigmaA;
 sigmaA = 0.1;  %?
-
-global w;
-w = wgn(1,2,0.01);
 
 global KalmanResult;
 KalmanResult = [0,0];
