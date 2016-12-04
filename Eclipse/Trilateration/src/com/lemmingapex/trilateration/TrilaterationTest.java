@@ -157,11 +157,15 @@ public class TrilaterationTest {
 		NonLinearLeastSquaresSolver nlSolver = new NonLinearLeastSquaresSolver(trilaterationFunction, new LevenbergMarquardtOptimizer());
 		
 		double[] expectedPosition = new double[] { 2.0, 1.0 };
+		
 		RealVector x = lSolver.solve();
+		double[] calculatedPositionLinear = x.toArray();
+		
 		Optimum optimum = nlSolver.solve();
 		double[] calculatedPosition = optimum.getPoint().toArray();
+		double [] returnArray = {calculatedPosition[0], calculatedPosition[1], calculatedPositionLinear[0], calculatedPositionLinear[1]};
 		testResults(expectedPosition, 0.1, optimum, x);
-		return calculatedPosition; // Changed to return the position instead of void
+		return returnArray; // Changed to return the position instead of void
 	}
 
 	@Test
