@@ -52,8 +52,13 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Simple_UWB (see VARARGIN)
 
+%Set simulation or not
+
+global sim;
+sim = 1;
+
 %connect to db
-db_connect;
+%db_connect;
 
 %What should it do when started?
 global t;
@@ -87,6 +92,17 @@ y3 = 3.45;
 handles.x3 = x3;
 handles.y3 = y3;
 
+roomWidth = 5;
+roomHeigth = 5;
+handles.roomWidth = roomWidth;
+handles.roomHeigth = roomHeigth;
+
+global img
+img = imread('layout2.jpg');
+
+global x_exact y_exact;
+x_exact = [0.9 1.75 2.75 3.75 3.75 4.75];
+y_exact = [2.4 1.45 1.45 1.45 2.45 2.45];
 
 handles.i = 1;
 S.fh = figure('units','pixels',...
@@ -160,7 +176,15 @@ global j;
 %Just put in the string and
 %use %d for the values you want.
 %Reads data from mother node.
-A = fscanf(obj, ['D1: %d D2: %d D3: %d'])
+
+%Check if it is a simulation or not
+global sim;
+if(sim)
+    sim
+	
+else
+    A = fscanf(obj, ['D1: %d D2: %d D3: %d'])
+end
 endFirstTic = toc(firstTic)
 iteration = iteration + 1;
 if (iteration == 3)
@@ -179,8 +203,10 @@ if (iteration == 3)
     clf;
     hold on;
     %Locks the axis
-    xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
-    ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    %xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
+    %ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    xlim([0 hanles.roomWidth]);
+    ylim([0 handles.roomHeigth]);
     
     %Plots the anchors (Which are stationary)
     
@@ -218,21 +244,26 @@ if (iteration == 3)
     
     plot(avgpx,avgpy,'b*');
     
-    global KalmanResult;
-    ptot = [avgpx, avgpy];
-    r = 1;
-    for(r = 1: 1: 100)
-        %Kalman goes here
-        xhatd = xhat;
-        P0n = P0;
-        K = (P0n)/(P0n + sigmaP);
-        xhat = xhatd + K*(Hk*ptot- xhatd);
-        P0 = (1-K)*P0n;
-        plot(xhat(1), xhat(2),'r*');
-        KalmanResult = [KalmanResult; xhat(1), xhat(2)];
+%     global KalmanResult;
+%     global w;
+%     ptot = [avgpx, avgpy];
+%     r = 1;
+%     xhatd = ptot + w;
+%     for(r = 1: 1: 10)
+%         %Kalman goes here
+%         
+%         P0n = P0;
+%         K = (P0n)/(P0n + sigmaP);
+%         xhat = xhatd + K*(Hk*ptot - xhatd);
+%         xhatd = xhat + w;
+%         P0 = (1-K)*P0n;
+%         KalmanResult = [KalmanResult; xhat(1), xhat(2)];
+%     
+%     end
     
-    end
-   
+        plot(xhat(1), xhat(2),'r*');
+        global x_exact y_exact;
+        plot(x_exact,y_exact, '+k')
     global result;
     result = [result; avgpx avgpy];
     
@@ -295,6 +326,9 @@ sigmaP = 0.1;
 global sigmaA;
 sigmaA = 0.1;  %?
 
+global w;
+w = wgn(1,2,0.01);
+
 global KalmanResult;
 KalmanResult = [0,0];
 port = 'COM3'; %Where 3 is COMport number (usually standard)
@@ -350,6 +384,8 @@ function Previous_button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global t;
 global result;
+global x_exact;
+global y_exact;
 stop(t);
 clf;
 hold on;
@@ -360,6 +396,9 @@ ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
 
 %Plots the anchors (Which are stationary)
 
+plot(x_exact,y_exact, '+k')
+xlabel('X')
+ylabel('Y')
 plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
 comet(result(:,1),result(:,2));
 

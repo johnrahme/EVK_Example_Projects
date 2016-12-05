@@ -52,8 +52,13 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Simple_UWB (see VARARGIN)
 
+%Set simulation or not
+
+global sim;
+sim = 1;
+
 %connect to db
-db_connect;
+%db_connect;
 
 %What should it do when started?
 global t;
@@ -86,6 +91,14 @@ x3 = 2.35;
 y3 = 3.45;
 handles.x3 = x3;
 handles.y3 = y3;
+
+roomWidth = 6;
+roomHeigth = 6;
+handles.roomWidth = roomWidth;
+handles.roomHeigth = roomHeigth;
+
+global img
+img = imread('layout2.jpg');
 
 global x_exact y_exact;
 x_exact = [0.9 1.75 2.75 3.75 3.75 4.75];
@@ -154,6 +167,7 @@ global sigmaP;
 global sigmaA;
 global Hk;
 global j;
+global img;
 %hold on;
 
 %     r1 = rand();
@@ -163,7 +177,19 @@ global j;
 %Just put in the string and
 %use %d for the values you want.
 %Reads data from mother node.
-A = fscanf(obj, ['D1: %d D2: %d D3: %d'])
+
+%Check if it is a simulation or not
+global sim;
+if(sim)
+    
+    simDist1 = handles.roomWidth*rand;
+    simDist2 = handles.roomWidth*rand;
+    simDist3 = handles.roomWidth*rand;
+    A = [simDist1;simDist2;simDist3];
+	
+else
+    A = fscanf(obj, ['D1: %d D2: %d D3: %d']);
+end
 endFirstTic = toc(firstTic)
 iteration = iteration + 1;
 if (iteration == 3)
@@ -180,10 +206,17 @@ if (iteration == 3)
     %Th for plotting of circles.
     %rX for each radius of circle (distances).
     clf;
+    
+    imagesc([0 handles.roomWidth],[0 handles.roomHeigth],flipud(img));
+    colormap(gray);
+    set(gca,'ydir','normal');
+
     hold on;
     %Locks the axis
-    xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
-    ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    %xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
+    %ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
+    %xlim([0 handles.roomWidth]);
+    %ylim([0 handles.roomHeigth]);
     
     %Plots the anchors (Which are stationary)
     
@@ -240,7 +273,7 @@ if (iteration == 3)
     
         plot(xhat(1), xhat(2),'r*');
         global x_exact y_exact;
-        plot(x_exact,y_exact, '+k')
+        %plot(x_exact,y_exact, '+k')
     global result;
     result = [result; avgpx avgpy];
     
@@ -312,8 +345,10 @@ port = 'COM3'; %Where 3 is COMport number (usually standard)
 BR = 9600; % BaudRate of port
 obj = serial(port, 'BaudRate', BR); % Creating object to read serial
 % with baudrate 9600
+global sim;
+if(not(sim))
 fopen(obj); %opens object
-
+end
 start(t);
 
 % Choose default command line output for Simple_UWB

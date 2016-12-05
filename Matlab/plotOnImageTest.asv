@@ -16,21 +16,20 @@ y = (6/8)*x;
 
 % NOTE: if your image is RGB, you should use flipdim(img, 1) instead of flipud.
 i = 0;
-
-currX = 0;
-currY = 0;
-%figure;
-while(i < 5)
+figure;
 imagesc([0 5], [0 5], flipud(img));
 xlabel('Raster Column');
 ylabel('Raster Row');
 colormap(gray);
 set(gca,'ydir','normal');
 hold on;
+currX = 0;
+currY = 0;
+while(i < 5)
 currX = i/2;
 currY = i/2;
 plot(currX,currY,'b-*','linewidth',1.5);
 i = i+1;
 pause(1);
-hold off;
+
 end
