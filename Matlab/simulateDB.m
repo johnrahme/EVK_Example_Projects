@@ -3,16 +3,16 @@ global conn;
 tablename = 'positions';
 colnames = {'x','y','sessionId'};
 
-numberOfUpdates = 300;
+numberOfUpdates = 100;
 i = 0;
 x = 0;
 y = 0;
-dx = 5;
-dy = 5;
+dx = 2;
+dy = 1;
 A = [];
 while(i<numberOfUpdates)
-    if(i == 150)
-        dx = 5;
+    if(i == numberOfUpdates/2)
+        dx = -2;
     end
     x = x+dx;
     y = y+dy;
@@ -26,6 +26,10 @@ while(i<numberOfUpdates)
     i = i+1;
 end
 
+disp('Mean: ');
+disp(mean(A));
+disp('Max: ');
+disp(max(A));
 %sqlquery = 'select * from positions';
 
 %curs = exec(conn,sqlquery);
