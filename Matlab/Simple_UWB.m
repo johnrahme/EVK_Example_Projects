@@ -43,24 +43,25 @@ else
 end
 % End initialization code - DO NOT EDIT
 
+%connect to db
+db_connect;
 
 % --- Executes just before Simple_UWB is made visible.
 function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
-    set(handles.Run_button,'String','Whohoo');
-    set(handles.places_listbox, 'String', ['test1';'test2']);
+    places = getPlacesDb();
+    set(handles.places_listbox, 'String', places);
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to Simple_UWB (see VARARGIN)
 
-%Set simulation or not
 
+%Set simulation or not
 global sim;
 sim = 1;
 
-%connect to db
-db_connect;
+
 
 %What should it do when started?
 global t;
@@ -157,7 +158,8 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 function timerFcn(object, event, hObject, handles)
-
+global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
+global session;
 firstTic = tic;
 global obj;
 SECONDTIC = tic;
@@ -184,9 +186,9 @@ global img;
 global sim;
 if(sim)
     
-    simDist1 = handles.roomWidth*rand;
-    simDist2 = handles.roomWidth*rand;
-    simDist3 = handles.roomWidth*rand;
+    simDist1 = placeWidth*rand;
+    simDist2 = placeWidth*rand;
+    simDist3 = placeWidth*rand;
     A = [simDist1;simDist2;simDist3];
 	
 else
@@ -209,7 +211,7 @@ if (iteration == 3)
     %rX for each radius of circle (distances).
     clf;
     
-    imagesc([0 handles.roomWidth],[0 handles.roomHeigth],flipud(img));
+    imagesc([0 placeWidth],[0 placeHeight],flipud(img));
     colormap(gray);
     set(gca,'ydir','normal');
 
@@ -222,19 +224,19 @@ if (iteration == 3)
     
     %Plots the anchors (Which are stationary)
     
-    S.fh = plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
+    S.fh = plot(placeAx,placeAy,'ro',placeBx,placeBy,'ro',placeCx,placeCy,'ro');
     
     th = 0:pi/50:2*pi;
-    xunit = r1 * cos(th) + handles.x1;
-    yunit = r1 * sin(th) + handles.y1;
+    xunit = r1 * cos(th) + placeAx;
+    yunit = r1 * sin(th) + placeAy;
     S.fh = plot(xunit, yunit);
     
-    xunit2 = r2 * cos(th) + handles.x2;
-    yunit2 = r2 * sin(th) + handles.y2;
+    xunit2 = r2 * cos(th) + placeBx;
+    yunit2 = r2 * sin(th) + placeBy;
     S.fh = plot(xunit2, yunit2);
     
-    xunit3 = r3 * cos(th) + handles.x3;
-    yunit3 = r3 * sin(th) + handles.y3;
+    xunit3 = r3 * cos(th) + placeCx;
+    yunit3 = r3 * sin(th) + placeCy;
     S.fh = plot(xunit3, yunit3);
     
     %Plot the estimated position with an error of e-meters around it.
@@ -281,7 +283,7 @@ if (iteration == 3)
     
     %Send to database
     
-    sendPositionDb(avgpx,avgpy,3);
+    sendPositionDb(avgpx,avgpy,session);
     
     
     
@@ -321,6 +323,13 @@ function Run_button_Callback(hObject, eventdata, handles)
 % hObject    handle to Run_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+% Set the
+
+global session placeId;
+
+sendSessionDb(placeId,1);
+session = getQuery('SELECT MAX(id) FROM sessions');
+session = cell2mat(session);
 global t;
 global obj;
 global xhat;
@@ -393,6 +402,7 @@ guidata(hObject, handles);
 
 % --- Executes on button press in Previous_button.
 function Previous_button_Callback(hObject, eventdata, handles)
+global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
 % hObject    handle to Previous_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -413,7 +423,7 @@ ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
 plot(x_exact,y_exact, '+k')
 xlabel('X')
 ylabel('Y')
-plot(handles.x1,handles.y1,'ro',handles.x2,handles.y2,'ro',handles.x3,handles.y3,'ro');
+plot(placeAx,placeAy,'ro',placeBx,placeBy,'ro',placeCx,placeCy,'ro');
 comet(result(:,1),result(:,2));
 
 
@@ -429,6 +439,7 @@ guidata(hObject, handles);
 
 % --- Executes on selection change in places_listbox.
 function places_listbox_Callback(hObject, eventdata, handles)
+global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
 % hObject    handle to places_listbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
@@ -436,14 +447,33 @@ function places_listbox_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns places_listbox contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from places_listbox
 
-contents = get(hObject,'Value');
-set(handles.place_details,'String',contents);
+names = get(hObject,'String');
+id = get(hObject,'Value');
+currName = strjoin(names(id));
+query = strcat('SELECT * FROM places WHERE name = "',currName,'"');
+place = getQuery(query);
+currentPlace = place;
+placeId = cell2mat(place(1,1));
+placeName = strjoin(place(1,2));
+placeUrl = strjoin(place(1,3));
+placeWidth = cell2mat(place(1,4));
+placeHeight = cell2mat(place(1,5));
+placeAx = cell2mat(place(1,6));
+placeAy = cell2mat(place(1,7));
+placeBx = cell2mat(place(1,8));
+placeBy = cell2mat(place(1,9));
+placeCx = cell2mat(place(1,10));
+placeCy = cell2mat(place(1,11));
+placeStr = ['Name: ' place(1,2) ' Url: ' place(1,3) 'Width: ' num2str(cell2mat(place(1,4))) 'Heigth: ' num2str(cell2mat(place(1,5))) 'AX: ' num2str(cell2mat(place(1,6))) 'AY: ' num2str(cell2mat(place(1,7))) 'BX: ' num2str(cell2mat(place(1,8))) 'BY: ' num2str(cell2mat(place(1,9))) 'CX: ' num2str(cell2mat(place(1,10))) 'CY: ' num2str(cell2mat(place(1,11)))];
+placeStr = strjoin(placeStr);
+set(handles.place_details,'String',placeStr);
 
 % --- Executes during object creation, after setting all properties.
 function places_listbox_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to places_listbox (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
 
 % Hint: listbox controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
