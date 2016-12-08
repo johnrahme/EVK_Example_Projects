@@ -55,10 +55,10 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 %Set simulation or not
 
 global sim;
-sim = 1;
+sim = 0;
 
 %connect to db
-%db_connect;
+db_connect;
 
 %What should it do when started?
 global t;
@@ -140,7 +140,7 @@ handles.ytot = ytot;
 global iteration;
 iteration = 0;
 t = timer('StartDelay',0.05, 'ExecutionMode',...
-    'fixedDelay','Period', 0.040);
+    'fixedDelay','Period', 0.0200);
 t.TimerFcn = {@timerFcn, hObject, handles};
 
 
@@ -279,7 +279,7 @@ if (iteration == 3)
     
     %Send to database
     
-    %sendPositionDb(avgpx,avgpy,3);
+    sendPositionDb(avgpx,avgpy,3);
     
     
     
