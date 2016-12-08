@@ -22,7 +22,7 @@ function varargout = Simple_UWB(varargin)
 
 % Edit the above text to modify the response to help Simple_UWB
 
-% Last Modified by GUIDE v2.5 28-Nov-2016 12:28:04
+% Last Modified by GUIDE v2.5 08-Dec-2016 14:28:47
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -46,6 +46,8 @@ end
 
 % --- Executes just before Simple_UWB is made visible.
 function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
+    set(handles.Run_button,'String','Whohoo');
+    set(handles.places_listbox, 'String', ['test1';'test2']);
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -58,7 +60,7 @@ global sim;
 sim = 1;
 
 %connect to db
-%db_connect;
+db_connect;
 
 %What should it do when started?
 global t;
@@ -140,7 +142,7 @@ handles.ytot = ytot;
 global iteration;
 iteration = 0;
 t = timer('StartDelay',0.05, 'ExecutionMode',...
-    'fixedDelay','Period', 0.040);
+    'fixedDelay','Period', 0.020);
 t.TimerFcn = {@timerFcn, hObject, handles};
 
 
@@ -279,7 +281,7 @@ if (iteration == 3)
     
     %Send to database
     
-    %sendPositionDb(avgpx,avgpy,3);
+    sendPositionDb(avgpx,avgpy,3);
     
     
     
@@ -423,3 +425,28 @@ guidata(hObject, handles);
 
 
 % --------------------------------------------------------------------
+
+
+% --- Executes on selection change in places_listbox.
+function places_listbox_Callback(hObject, eventdata, handles)
+% hObject    handle to places_listbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns places_listbox contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from places_listbox
+
+contents = get(hObject,'Value');
+set(handles.place_details,'String',contents);
+
+% --- Executes during object creation, after setting all properties.
+function places_listbox_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to places_listbox (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: listbox controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
