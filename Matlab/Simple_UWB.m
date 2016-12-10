@@ -43,7 +43,7 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-%connect to db
+%Connect to database
 db_connect;
 
 % --- Executes just before Simple_UWB is made visible.
@@ -58,28 +58,54 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 
 
 %Set simulation or not
+% sim = 1 -> simulate with real values
 global sim;
 sim = 1;
 
-
-
 %What should it do when started?
+
+%------------------------------------------------
+% ------ Global Variables ------- %
+
 global t;
 global session;
+global img
+global result;
+global average;
+global j;
+global iteration;
+global last_x last_P noise acc
+global A B Q R H G
+%------------------------------------------------
+
+%------------------------------------------------
+% If exact values (for visual)
+%global x_exact y_exact;
+
+%x_exact = [0.9 1.75 2.75 3.75 3.75 4.75];
+%y_exact = [2.4 1.45 1.45 1.45 2.45 2.45];
+
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- If SIMULATION ----- %
+
 session = 1;
-%--------------------------
-%@@@@@@@@@@@@@@@@@@@@@@@@@@
-%     Init Java commands
-%--------------------------
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- Init Java commands ------ %
 
 %javaaddpath(fullfile(matlabroot,'work','triateration.jar'))
 %javaaddpath('Trilateration.jar');
 tri = com.lemmingapex.trilateration.TrilaterationTest;
 handles.tri = tri;
-%@@@@ End of java init @@@@@
+%------------------------------------------------
 
+%------------------------------------------------
 % Origin of anchors
 % (Needs to be hard coded)
+
 x1 = 4.45;
 y1 = 1.5;
 handles.x1 = x1;
@@ -94,18 +120,22 @@ x3 = 2.35;
 y3 = 3.45;
 handles.x3 = x3;
 handles.y3 = y3;
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- Room Width and Heigth ----- %
 
 roomWidth = 6;
 roomHeigth = 6;
 handles.roomWidth = roomWidth;
 handles.roomHeigth = roomHeigth;
+%------------------------------------------------
 
-global img
+%------------------------------------------------
+% ----- Image and Plot window ----- %
 img = imread('layout2.jpg');
 
-global x_exact y_exact;
-x_exact = [0.9 1.75 2.75 3.75 3.75 4.75];
-y_exact = [2.4 1.45 1.45 1.45 2.45 2.45];
+
 
 handles.i = 1;
 S.fh = figure('units','pixels',...
@@ -115,20 +145,23 @@ S.fh = figure('units','pixels',...
     'numbertitle','off',...
     'resize','off');
 hold on;
+%------------------------------------------------
 
-S.fh = plot(x1,y1,'ro',x2,y2,'ro',x3,y3,'ro');
-global result;
+%------------------------------------------------
+% ----- Setting some standard values ----- %
+
+% If anchor plot on startup 
+%S.fh = plot(x1,y1,'ro',x2,y2,'ro',x3,y3,'ro');
+
+% A result matrix to show the previous run
 result = [0, 0];
 handles.result = result;
 
-global average;
+% Average matrix to not have so much jumping around
 average = [0,0; 0,0; 0,0; 0,0; 0,0];
 
-global j;
+% To read the average of the last 5 values.
 j = 5;
-
-global result;
-result = [0 0];
 
 %Java input, needs the position of the three anchors
 positions =[ x1,y1; x2, y2 ;  x3, y3 ];
@@ -140,12 +173,40 @@ ytot = [y1,y2,y3];
 handles.xtot = xtot;
 handles.ytot = ytot;
 
-global iteration;
+% The loop only updates every three new reading
 iteration = 0;
+
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- Init the timer function ----- %
 t = timer('StartDelay',0.05, 'ExecutionMode',...
     'fixedDelay','Period', 0.020);
 t.TimerFcn = {@timerFcn, hObject, handles};
+%------------------------------------------------
 
+%------------------------------------------------
+% ----- Kalman fliter matrices init ----- %
+
+delta_T = 0.1;
+A = [1, delta_T, 0, 0; 0, 1, 0, 0; 0, 0, 1, delta_T; 0, 0, 0, 1];
+
+B = [1, 0, 0, 0;0, 1, 0, 0;0, 0, 1, 0;0, 0, 0, 1];
+
+H = [1, 0, 0, 0;0, 1, 0, 0;0, 0, 1, 0;0, 0, 0, 1];
+
+Q = [0.01, 0, 0, 0;0, 0.002, 0, 0;0, 0, 0.01, 0;0, 0, 0, 0.002];
+
+G = [(delta_T^2)/2; delta_T; (delta_T^2)/2; delta_T];
+
+R = 0.01*eye(4);%[1, 0, 0, 0;0, 1, 0, 0;0, 0, 0.1, 0;0, 0, 0, 0.1];
+x_init = [0 0 0 0];
+P = 1*eye(4);
+last_x = x_init';
+last_P = P;
+noise = 0.01;%normrnd(0,0.01)*[0 1 0 1]';
+acc = 0.01*(noise/2-rand()*noise);%normrnd(0,0.1);
+%------------------------------------------------
 
 
 % Choose default command line output for Simple_UWB
@@ -158,32 +219,33 @@ guidata(hObject, handles);
 % uiwait(handles.figure1);
 
 function timerFcn(object, event, hObject, handles)
+%------------------------------------------------
+% ------ Global Variables ------- %
+
 global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
 global session;
-firstTic = tic;
 global obj;
-SECONDTIC = tic;
 global average;
 global iteration;
-global xhat;
-global P0;
-global sigmaP;
-global sigmaA;
-global Hk;
 global j;
 global img;
-%hold on;
-
-%     r1 = rand();
-%     r2 = rand();
-%     r3 = rand();
-
-%Just put in the string and
-%use %d for the values you want.
-%Reads data from mother node.
-
-%Check if it is a simulation or not
 global sim;
+global last_x last_P noise acc
+global A B Q R H G
+global result;
+
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- Clocks to see time of loop ----- %
+
+firstTic = tic;
+SECONDTIC = tic;
+%------------------------------------------------
+
+%------------------------------------------------
+%Check if it is a simulation or not
+
 if(sim)
     
     simDist1 = placeWidth*rand;
@@ -192,10 +254,15 @@ if(sim)
     A = [simDist1;simDist2;simDist3];
 	
 else
-    A = fscanf(obj, ['D1: %d D2: %d D3: %d']);
+    A = fscanf(obj, ['D1: %d D2: %d D3: %d']); %Read from serial port
 end
-endFirstTic = toc(firstTic)
+endFirstTic = toc(firstTic) % See how fast the USB-reading is
 iteration = iteration + 1;
+%------------------------------------------------
+
+%------------------------------------------------
+% ----- When iteration == 3 the calculation begins ----- %
+
 if (iteration == 3)
     r1 = A(1,1)/1000;  %divides it down to [m]
     r2 = A(2,1)/1000;
@@ -205,8 +272,9 @@ if (iteration == 3)
     distances = [r1, r2, r3];
     
     p = javaMethod('trilateration2DInexact1', handles.tri, handles.positions, distances);
-    %disp(p);
-    endsecondtic = toc(SECONDTIC)
+    
+    endsecondtic = toc(SECONDTIC) %See how long it takes to come here
+    
     %Th for plotting of circles.
     %rX for each radius of circle (distances).
     clf;
@@ -217,10 +285,6 @@ if (iteration == 3)
 
     hold on;
     %Locks the axis
-    %xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
-    %ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
-    %xlim([0 handles.roomWidth]);
-    %ylim([0 handles.roomHeigth]);
     
     %Plots the anchors (Which are stationary)
     
@@ -240,16 +304,11 @@ if (iteration == 3)
     S.fh = plot(xunit3, yunit3);
     
     %Plot the estimated position with an error of e-meters around it.
-    %h = plot(p(1),p(2), 'b*');
-    
-    
     e = 0.1;
     punitx = e*cos(th) + p(1);
     punity = e*sin(th) + p(2);
     plot(punitx,punity, 'g-');
-    
-    
-    
+      
     %Plot the average of 5 values.
     average = [average; p(1), p(2)];
     j = j+1;
@@ -257,28 +316,58 @@ if (iteration == 3)
     avgpx = (average(j-5,1)+average(j-4,1)+average(j-3,1)+average(j-2,1)+average(j-1,1))/5;
     
     plot(avgpx,avgpy,'b*');
+%------------------------------------------------
+
+%------------------------------------------------
+        % Kalman filter
+
+    cur_xpos = avgpx;%+noise/2 -noise*rand();
+    cur_ypos = avgpy;%+noise/2 -noise*rand();
     
-%     global KalmanResult;
-%     global w;
-%     ptot = [avgpx, avgpy];
-%     r = 1;
-%     xhatd = ptot + w;
-%     for(r = 1: 1: 10)
-%         %Kalman goes here
-%         
-%         P0n = P0;
-%         K = (P0n)/(P0n + sigmaP);
-%         xhat = xhatd + K*(Hk*ptot - xhatd);
-%         xhatd = xhat + w;
-%         P0 = (1-K)*P0n;
-%         KalmanResult = [KalmanResult; xhat(1), xhat(2)];
-%     
-%     end
+    % Velocity = Distance/Time [m/s]
+    velX = (cur_xpos-last_x(1))/0.2;
+    velY = (cur_ypos-last_x(3))/0.2;
+    disp('velocity')
+    disp([velX,velY]);
     
-        plot(xhat(1), xhat(2),'r*');
-        global x_exact y_exact;
-        %plot(x_exact,y_exact, '+k')
-    global result;
+    % Quiver to achieve an velocity arrow
+    % that points in the traveling direction
+    quiver(cur_xpos,cur_ypos,velX,velY)
+    
+    % Measurement vector
+    z = [cur_xpos, velX, cur_ypos, velY];
+
+    % Kalman iteration to achieve future values
+    
+    kalman_time = tic; % See how long the kalman iteration takes
+    for n=1:100
+        x_est_m = last_x;
+        P = last_P;
+        
+        x_est_m = A*x_est_m + G*acc;
+        P_m = A*P*A'+Q;
+        
+        K = (P*H')/(H*P*H'+R);
+        x_est = x_est_m + K*(z' - H*x_est_m);
+        P = (eye(4) - K*H)*P_m;
+        
+        
+        last_x = x_est;
+        last_P = P;
+    end
+    kalman_end = toc(kalman_time) %Displays time
+    
+    % Plots the future values aquired by the kalman iterations
+    
+    %plot(x_est(1), x_est(3), 'ro');
+    plot(x_est_m(1), x_est_m(3), 'bo');
+    disp(last_x)
+    disp([avgpx,avgpy])
+    %disp([p(1),p(2)])
+    %------------------------------------------------
+    
+    %------------------------------------------------
+    %    Result that gets sent to database    %
     result = [result; avgpx avgpy];
     
     %Send to database
@@ -291,14 +380,11 @@ if (iteration == 3)
     %     if(pauseTime > 0)
     %         pause(pauseTime);
     %     end
-    endsecondtic = toc(SECONDTIC)
-    %pause(0.02);
-    %clf;
-    %delete(h);
+    endsecondtic = toc(SECONDTIC) % How long the whole loop takes
     hold off;
-    iteration = 0;
+    iteration = 0; %iteration set to 0.
 end
-
+%------------------------------------------------
 % Choose default command line output for Simple_UWB
 handles.output = hObject;
 
@@ -325,38 +411,25 @@ function Run_button_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 % Set the
 
+%------------------------------------------------
+% ------ Global Variables ------- %
+
 global session placeId;
+global t;
+global obj;
+global sim;
+%------------------------------------------------
 
 sendSessionDb(placeId,1);
 session = getQuery('SELECT MAX(id) FROM sessions');
 session = cell2mat(session);
-global t;
-global obj;
-global xhat;
-xhat = [0,0];
 
-global P0;
-P0 = 1;
-
-global Hk;
-Hk = 1;
-
-global sigmaP;
-sigmaP = 0.1;
-
-global sigmaA;
-sigmaA = 0.1;  %?
-
-global w;
-w = wgn(1,2,0.01);
-
-global KalmanResult;
-KalmanResult = [0,0];
 port = 'COM3'; %Where 3 is COMport number (usually standard)
 BR = 9600; % BaudRate of port
 obj = serial(port, 'BaudRate', BR); % Creating object to read serial
 % with baudrate 9600
-global sim;
+
+
 if(not(sim))
 fopen(obj); %opens object
 end
@@ -378,19 +451,29 @@ function Stop_button_Callback(hObject, eventdata, handles)
 
 % What happens when Stop button is pressed
 % closes everything
+
+%------------------------------------------------
+% ------ Global Variables ------- %
+
 global t;
 global obj;
+global j;
+global average;
+%------------------------------------------------
+
 fclose(obj);
 delete(obj);
 clear obj;
 stop(t);
 clf;
 
-global j;
+%------------------------------------------------
+% Resets the average vector
+
 j = 5;
 
-global average;
 average = [0,0; 0,0; 0,0; 0,0; 0,0;];
+%------------------------------------------------
 
 
 % Choose default command line output for Simple_UWB
@@ -402,18 +485,23 @@ guidata(hObject, handles);
 
 % --- Executes on button press in Previous_button.
 function Previous_button_Callback(hObject, eventdata, handles)
-global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
 % hObject    handle to Previous_button (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+%------------------------------------------------
+% ------ Global Variables ------- %
+global currentPlace placeId placeName placeUrl placeWidth placeHeight placeAx placeAy placeBx placeBy placeCx placeCy;
 global t;
 global result;
 global x_exact;
 global y_exact;
+%------------------------------------------------
+
+
 stop(t);
 clf;
 hold on;
-handles.i = 0;
 
 xlim([(min(handles.xtot)-2) (max(handles.xtot)+2)]);
 ylim([(min(handles.ytot)-2) (max(handles.ytot)+2)]);
