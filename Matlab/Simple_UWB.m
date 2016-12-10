@@ -58,7 +58,7 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 
 
 %Set simulation or not
-% sim = 1 -> simulate with real values
+% sim = 1 -> simulate with fake values
 global sim;
 sim = 1;
 
@@ -251,10 +251,10 @@ if(sim)
     simDist1 = placeWidth*rand;
     simDist2 = placeWidth*rand;
     simDist3 = placeWidth*rand;
-    A = [simDist1;simDist2;simDist3];
+    Adist = [simDist1;simDist2;simDist3];
 	
 else
-    A = fscanf(obj, ['D1: %d D2: %d D3: %d']); %Read from serial port
+    Adist = fscanf(obj, ['D1: %d D2: %d D3: %d']); %Read from serial port
 end
 endFirstTic = toc(firstTic) % See how fast the USB-reading is
 iteration = iteration + 1;
@@ -264,9 +264,9 @@ iteration = iteration + 1;
 % ----- When iteration == 3 the calculation begins ----- %
 
 if (iteration == 3)
-    r1 = A(1,1)/1000;  %divides it down to [m]
-    r2 = A(2,1)/1000;
-    r3 = A(3,1)/1000;
+    r1 = Adist(1,1)/1000;  %divides it down to [m]
+    r2 = Adist(2,1)/1000;
+    r3 = Adist(3,1)/1000;
     
     %Java input, takes the real time distances.
     distances = [r1, r2, r3];
@@ -312,9 +312,9 @@ if (iteration == 3)
     %Plot the average of 5 values.
     average = [average; p(1), p(2)];
     j = j+1;
-    avgpy = (average(j-5,2)+average(j-4,2)+average(j-3,2)+average(j-2,2)+average(j-1,2))/5;
     avgpx = (average(j-5,1)+average(j-4,1)+average(j-3,1)+average(j-2,1)+average(j-1,1))/5;
-    
+    avgpy = (average(j-5,2)+average(j-4,2)+average(j-3,2)+average(j-2,2)+average(j-1,2))/5;
+
     plot(avgpx,avgpy,'b*');
 %------------------------------------------------
 
@@ -323,6 +323,7 @@ if (iteration == 3)
 
     cur_xpos = avgpx;%+noise/2 -noise*rand();
     cur_ypos = avgpy;%+noise/2 -noise*rand();
+    disp([avgpx, avgpy])
     
     % Velocity = Distance/Time [m/s]
     velX = (cur_xpos-last_x(1))/0.2;
@@ -333,6 +334,7 @@ if (iteration == 3)
     % Quiver to achieve an velocity arrow
     % that points in the traveling direction
     quiver(cur_xpos,cur_ypos,velX,velY)
+    
     
     % Measurement vector
     z = [cur_xpos, velX, cur_ypos, velY];
