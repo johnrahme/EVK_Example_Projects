@@ -44,7 +44,7 @@ end
 % End initialization code - DO NOT EDIT
 
 %Connect to database
-db_connect;
+db_connect();
 
 % --- Executes just before Simple_UWB is made visible.
 function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -421,6 +421,8 @@ global t;
 global obj;
 global sim;
 %------------------------------------------------
+%Connect to db
+db_connect();
 
 sendSessionDb(placeId,1);
 session = getQuery('SELECT MAX(id) FROM sessions');
