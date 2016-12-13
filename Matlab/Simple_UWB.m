@@ -60,7 +60,7 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 %Set simulation or not
 % sim = 1 -> simulate with fake values
 global sim;
-sim = 0;
+sim = 1;
 
 %What should it do when started?
 
@@ -133,7 +133,7 @@ handles.roomHeigth = roomHeigth;
 
 %------------------------------------------------
 % ----- Image and Plot window ----- %
-img = imread('layout2.jpg');
+img = imread('Bilder/sigge_cut.jpg');
 
 
 
