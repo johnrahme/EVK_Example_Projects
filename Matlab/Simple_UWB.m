@@ -60,7 +60,7 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 %Set simulation or not
 % sim = 1 -> simulate with fake values
 global sim;
-sim = 1;
+sim = 0;
 
 %What should it do when started?
 
@@ -139,7 +139,7 @@ img = imread('layout2.jpg');
 
 handles.i = 1;
 S.fh = figure('units','pixels',...
-    'position',[200 200 450 400],...
+    'position',[10 10 1200 500],...
     'menubar','none',...
     'name','GUI_8',...
     'numbertitle','off',...
@@ -164,8 +164,8 @@ average = [0,0; 0,0; 0,0; 0,0; 0,0];
 j = 5;
 
 %Java input, needs the position of the three anchors
-positions =[ x1,y1; x2, y2 ;  x3, y3 ];
-handles.positions = positions;
+%positions =[ x1,y1; x2, y2 ;  x3, y3 ];
+%handles.positions = positions;
 
 %Places all x,y-values to take min/max to lock axis
 xtot = [x1,x2,x3];
@@ -271,7 +271,8 @@ if (iteration == 3)
     %Java input, takes the real time distances.
     distances = [r1, r2, r3];
     
-    p = javaMethod('trilateration2DInexact1', handles.tri, handles.positions, distances);
+    positions =[ placeAx,placeAy; placeBx, placeBy;  placeCx, placeCy];
+    p = javaMethod('trilateration2DInexact1', handles.tri, positions, distances);
     
     endsecondtic = toc(SECONDTIC) %See how long it takes to come here
     
