@@ -8,5 +8,5 @@ data_table = cell2table(data,'VariableNames',colnames);
 fastinsert(conn,tablename,colnames,data_table);
 
 %Example
-%sendPlaceDb('TestPlace','Test.jpg','10','20','1.2','3.4','1.2','3.4','1.2','3.4')
+%sendPlaceDb('TestPlace','Test.jpg',10,20,1.',3.4,1.2,3.4,1.2,3.4)
 end
