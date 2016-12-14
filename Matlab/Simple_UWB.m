@@ -62,6 +62,9 @@ function Simple_UWB_OpeningFcn(hObject, eventdata, handles, varargin)
 global sim;
 sim = 1;
 
+global dbLive;
+dbLive = 0;
+
 %What should it do when started?
 
 %------------------------------------------------
@@ -153,9 +156,7 @@ hold on;
 % If anchor plot on startup 
 %S.fh = plot(x1,y1,'ro',x2,y2,'ro',x3,y3,'ro');
 
-% A result matrix to show the previous run
-result = [0, 0];
-handles.result = result;
+
 
 % Average matrix to not have so much jumping around
 average = [0,0; 0,0; 0,0; 0,0; 0,0];
@@ -233,6 +234,7 @@ global sim;
 global last_x last_P noise acc
 global A B Q R H G
 global result;
+global dbLive;
 
 %------------------------------------------------
 
@@ -371,12 +373,12 @@ if (iteration == 3)
     
     %------------------------------------------------
     %    Result that gets sent to database    %
-    result = [result; avgpx avgpy];
+    result = [result; avgpx avgpy session];
     
     %Send to database
-    
-    sendPositionDb(avgpx,avgpy,session);
-    
+    if(dbLive)
+        sendPositionDb(avgpx,avgpy,session);
+    end
     
     
     %     pauseTime = 0.1-endFirstTic;
@@ -421,6 +423,8 @@ global session placeId;
 global t;
 global obj;
 global sim;
+global result;
+result = [0 0 0];
 %------------------------------------------------
 %Connect to db
 db_connect();
@@ -464,7 +468,18 @@ global t;
 global obj;
 global j;
 global average;
+global result;
+global dbLive;
+global conn;
 %------------------------------------------------
+if(dbLive == 0) 
+    tablename = 'positions';
+    colnames = {'x','y','sessionId'};
+
+    data = num2cell(result);
+    data_table = cell2table(data,'VariableNames',colnames);
+    fastinsert(conn,tablename,colnames,data_table);
+end
 
 fclose(obj);
 delete(obj);
